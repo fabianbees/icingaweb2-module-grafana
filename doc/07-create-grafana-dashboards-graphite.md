@@ -11,9 +11,9 @@ To save your changes, just hit the :floppy_disk: icon.
 
 ## Templating
 
-We use templateing to get a map from var-[hostname|servicename|command] to a Grafana variable. We will set this as a query to InfluxDB and later if you want we change it to an constant.
+We use templating to get a map from var-[hostname|servicename|command] to a Grafana variable. We will set this as a query to InfluxDB and later if you want we change it to an constant.
 Open the `Templating` settings and hit the ![Templating](images/06-new-button.png) button.
-The variable name has to be `hostname`, `service` or `command` for the use with the grafana module.
+The variable name has to be `hostname`, `service` or `command` for the use with the Grafana module.
 The `Datasource` should point to your Graphite datasource.
 Set the `Type` to `Query`, Refresh to `On Dashboard Load` and if you want, set `Sort` to what preferred sort order.
 
@@ -39,7 +39,7 @@ The complete templating should now look like this
 
 ![Complete Templating](images/07-templating-graphite.png)
 
-Close the templateing and hit the :floppy_disk: icon to save the dashboard we made so far.
+Close the templating and hit the :floppy_disk: icon to save the dashboard we made so far.
 
 ![New Dashboard with templating](images/06-new-dashboard-with-templating.png)
 
@@ -94,15 +94,15 @@ Change the `pl`, `pl.warn`and `pl.crit` axis by clicking on the small colored li
 
 ![Set Y axis](images/06-dashboard-panel-yaxis.png)
 
-## Change colors for values/tresholds
+## Change colors for values/thresholds
 
-To change the colors the quick way just click on the small colored line infront of the metric/thresholds in the legend.
+To change the colors the quick way just click on the small colored line in front of the metric/thresholds in the legend.
 
 ![Colors for metrics/threshold](images/06-dashboard-panel-colors.png)
 
 The default Icinga2 color for critical is `#ff5566` and for warning it is `#ffaa44`
 
-Dont forget to hit the :floppy_disk: from time to timee to save your dashboard.
+Don't forget to hit the :floppy_disk: from time to time to save your dashboard.
 
 ## Change graph title (General tab)
 
@@ -121,7 +121,7 @@ The left Y axis we set to `percent: (0-100)`, the `Y-Min` and `Decimals` to **0*
 ## Legend (Legend tab)
 
 Activate `As Table`, `Min`, `Max`, `Avg` and `Current` to have some more information shown.
-If you want to hide metrics with only **0** in the choosen time range, activate **Hide series** `With only zeros` too.
+If you want to hide metrics with only **0** in the chosen time range, activate **Hide series** `With only zeros` too.
 
 ![Legend](images/06-dashboard-panel-legend.png)
 

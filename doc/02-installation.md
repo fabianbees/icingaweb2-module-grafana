@@ -16,7 +16,7 @@ to the latest version, please [read on here](05-update.md).
 ## Install the Grafana module
 
 As with any Icinga Web 2 module, installation is pretty straight-forward. In
-case you're installing it from source all you have to do is to drop the grafana
+case you're installing it from source all you have to do is to drop the Grafana
 module in one of your module paths. You can examine (and set) the module path(s)
 in `Configuration / Application`. In a typical environment you'll probably drop the
 module to `/usr/share/icingaweb2/modules/grafana`. Please note that the directory
@@ -28,30 +28,30 @@ Use this only if you want to use/test the latest developer version of the module
 
 ```
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
-REPO_URL="https://github.com/Mikesch-mp/icingaweb2-module-grafana"
+REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
 git clone "${REPO_URL}" "${TARGET_DIR}"
 ```
 
 ### Tarball
 
-Replace the version number with the lates available version from [Latest Release](https://github.com/Mikesch-mp/icingaweb2-module-grafana/releases/latest)
+Replace the version number with the latest available version from [Latest Release](https://github.com/NETWAYS/icingaweb2-module-grafana/releases/latest)
 
 ```
 MODULE_VERSION="2.0.1"
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
-REPO_URL="https://github.com/Mikesch-mp/icingaweb2-module-grafana"
+REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
 URL="${REPO_URL}/archive/v${MODULE_VERSION}.tar.gz"
 install -d -m 0755 "${TARGET_DIR}"
 wget -q -O - "$URL" | tar xfz - -C "${TARGET_DIR}" --strip-components 1
 ```
 
-### Enable the module 
+### Enable the module
 
 In the Icinga Web 2 frontend in `Configuration -> Modules -> grafana -> enable`.
 
-![iEnable grafana module](images/02-installation-01.png)
+![enable Grafana module](images/02-installation-01.png)
 
 You can also enable the module by using the `icingacli` command:
 
