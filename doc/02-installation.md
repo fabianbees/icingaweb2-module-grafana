@@ -28,26 +28,26 @@ Use this only if you want to use/test the latest developer version of the module
 
 ```
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
-REPO_URL="https://github.com/Mikesch-mp/icingaweb2-module-grafana"
+REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
 git clone "${REPO_URL}" "${TARGET_DIR}"
 ```
 
 ### Tarball
 
-Replace the version number with the lates available version from [Latest Release](https://github.com/Mikesch-mp/icingaweb2-module-grafana/releases/latest)
+Replace the version number with the lates available version from [Latest Release](https://github.com/NETWAYS/icingaweb2-module-grafana/releases/latest)
 
 ```
 MODULE_VERSION="2.0.1"
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
-REPO_URL="https://github.com/Mikesch-mp/icingaweb2-module-grafana"
+REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
 URL="${REPO_URL}/archive/v${MODULE_VERSION}.tar.gz"
 install -d -m 0755 "${TARGET_DIR}"
 wget -q -O - "$URL" | tar xfz - -C "${TARGET_DIR}" --strip-components 1
 ```
 
-### Enable the module 
+### Enable the module
 
 In the Icinga Web 2 frontend in `Configuration -> Modules -> grafana -> enable`.
 
