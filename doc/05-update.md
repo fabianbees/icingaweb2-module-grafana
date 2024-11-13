@@ -9,7 +9,7 @@ If you used [git clone](02-installation.md) to install the module, just do
 git pull
 ```
 
-inside the module directory (usaly /usr/share/icingaweb2/modules/grafana)
+inside the module directory (usually /usr/share/icingaweb2/modules/grafana)
 
 ## Using latest tarball
 
@@ -36,5 +36,5 @@ and or changed configuration options. When done, just hit the `Save Changes` but
 
 ## Dashboards
 
-Dont forget to check the dashboard directories for newer versions of existing ones
+Don't forget to check the dashboard directories for newer versions of existing ones
 or new dashboards.

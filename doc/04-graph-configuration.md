@@ -89,7 +89,7 @@ This opens a new tab with the configuration options
 
 ![Add New Grafana Graph](images/04-graph.configuration-03.png)
 
-We will use the `parametrized service name` "if-usage" in our example, the dasboard named `nwc_health` and the graph with panelid 1.
+We will use the `parametrized service name` "if-usage" in our example, the dashboard named `nwc_health` and the graph with panelid 1.
 
 ![Add New Grafana Graph](images/04-graph.configuration-04.png)
 
@@ -99,14 +99,14 @@ After hitting the `Add graph` button we see our new graph configuration.
 
 ### Auto repeating panels
 
-If you set a graph to be autorepeating your Grafana dashboard must provide the repeating panels by its own.
+If you set a graph to be auto repeating your Grafana dashboard must provide the repeating panels by its own.
 The formula for how many panels will be shown is
 
 ```
 Number of service perfdata metrics / number of metrics per panel config (nmetrics) = number of panels
 ```
 
-The Dasboard needs templating for metrics of a service like
+The Dashboard needs templating for metrics of a service like
 ```
 SHOW TAG VALUES FROM /^COMMAND_NAME$/ WITH KEY = "metric" where hostname =~ /^$hostname$/ and service =~ /^$service$/
 ``` 
@@ -149,7 +149,7 @@ This opens a new tab with the configuration options
 ![Add New Grafana Graph](images/04-graph.configuration-03.png)
 
 Fill in the name of the `check_command` name we just discovered above as **__Name__**, the dashboard name
-and the panelid of the graph you want to use. Thats it :)
+and the panelid of the graph you want to use. That's it :)
 
 Example:
 

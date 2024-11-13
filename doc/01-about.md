@@ -22,4 +22,4 @@ LICENSE file included in the source package.
 
 ## Support
 
-[Github Issues](https://github.com/NETWAYS/icingaweb2-module-grafana/issues)
+[GitHub Issues](https://github.com/NETWAYS/icingaweb2-module-grafana/issues)
