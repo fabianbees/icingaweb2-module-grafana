@@ -1,0 +1,16 @@
+# Exclude editor files
+.*.sw[op]
+*~
+/.idea/
+\#*
+.\#*
+*TODO*
+!.git*
+
+# PHP artifacts
+_icingaweb2/
+_libraries/
+.phpunit.cache/
+.phplint.cache/
+reports/
+vendor/
