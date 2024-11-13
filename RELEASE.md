@@ -10,7 +10,7 @@ VERSION=1.2.1
 
 ## Issues
 
-Check issues at https://github.com/Mikesch-mp/icingaweb2-module-grafana/milestones
+Check issues at https://github.com/NETWAYS/icingaweb2-module-grafana/milestones
 
 ## Version
 
@@ -30,18 +30,18 @@ Ensure to have [github_changelog_generator](https://github.com/skywinder/github-
 installed and set the GitHub token to avoid rate limiting.
 
 ```
-github_changelog_generator -u mikesch-mp -p icingaweb2-module-grafana --future-release=$VERSION
+github_changelog_generator -u netways -p icingaweb2-module-grafana --future-release=$VERSION
 ```
 
 ## Git Tag
 
-Commit these changes to the "master" branch:
+Commit these changes to the "main" branch:
 
 ```
 $ git commit -v -a -m "Release version $VERSION"
 ```
 
-Create a signed tag (tags/v<VERSION>) on the "master" branch.
+Create a signed tag (tags/v<VERSION>) on the "main" branch.
 
 ```
 $ git tag -m "Version $VERSION" v$VERSION
@@ -56,7 +56,7 @@ $ git push --tags
 
 ## Release Tests
 
-* Provision the vagrant boxes and pull the master in `/usr/share/icingaweb2/modules/grafana`
+* Provision the vagrant boxes and pull the main in `/usr/share/icingaweb2/modules/grafana`
 
 Example:
 
@@ -70,7 +70,7 @@ $ vagrant ssh -c "cd /usr/share/icingaweb2/modules/grafana && sudo git pull"
 ## GitHub Release
 
 Create a new release for the newly created Git tag.
-https://github.com/Mikesch-mp/icingaweb2-module-grafana/releases
+https://github.com/NETWAYS/icingaweb2-module-grafana/releases
 
 Note: A new GitHub release will be synced by Icinga Exchange automatically.
 
@@ -81,4 +81,4 @@ Note: A new GitHub release will be synced by Icinga Exchange automatically.
 
 # After the release
 
-* Close the released version at https://github.com/Mikesch-mp/icingaweb2-module-grafana/milestones
+* Close the released version at https://github.com/NETWAYS/icingaweb2-module-grafana/milestones

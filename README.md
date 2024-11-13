@@ -10,23 +10,19 @@
 6. [Contributing](#contributing)
 7. [Donations](#donations)
 
-
 ## About
 
 Add Grafana graphs into Icinga Web 2 to display performance metrics.
 
 <table border="0">
 <tr>
-   <td><img src="https://github.com/Mikesch-mp/icingaweb2-module-grafana/raw/master/doc/images/icingaweb2_grafana_screenshot_01.png"></td>
-   <td rowspan="2"><img src="https://github.com/Mikesch-mp/icingaweb2-module-grafana/raw/master/doc/images/icingaweb2_grafana_screenshot_05.png"></td>
+   <td><img src="https://github.com/NETWAYS/icingaweb2-module-grafana/raw/main/doc/images/icingaweb2_grafana_screenshot_01.png"></td>
+   <td rowspan="2"><img src="https://github.com/NETWAYS/icingaweb2-module-grafana/raw/main/doc/images/icingaweb2_grafana_screenshot_05.png"></td>
 </tr>
 <tr>
-   <td><img src="https://github.com/Mikesch-mp/icingaweb2-module-grafana/raw/master/doc/images/icingaweb2_grafana_screenshot_01.png"></td>
+   <td><img src="https://github.com/NETWAYS/icingaweb2-module-grafana/raw/main/doc/images/icingaweb2_grafana_screenshot_01.png"></td>
 </tr>
 </table>
-
-
-
 
 ## License
 
@@ -48,11 +44,13 @@ Join the [Icinga community channels](https://icinga.com/community/) for question
 
 ## Documentation
 
-You can find the complete documentation inside the [doc](https://github.com/Mikesch-mp/icingaweb2-module-grafana/raw/master/doc) folder.
+You can find the complete documentation inside the [doc](doc/) folder.
 
 ## Thanks
 
 This module borrows a lot from https://github.com/Icinga/icingaweb2-module-generictts & https://github.com/Icinga/icingaweb2-module-pnp.
+
+This is a fork of https://github.com/Mikesch-mp/icingaweb2-module-grafana/
 
 ## Contributing
 
@@ -61,4 +59,3 @@ whether it be sending patches, testing, reporting bugs, or reviewing and
 updating the documentation. Every contribution is appreciated!
 
 Please continue reading in the [contributing chapter](CONTRIBUTING.md).
-

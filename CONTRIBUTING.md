@@ -19,8 +19,8 @@ bug reports and features requests or writing code to add enhancements or fix bug
 
 ## <a id="contributing-intro"></a> Introduction
 
-Please consider our [roadmap](https://github.com/Icinga/icingaweb2/milestones) and
-[open issues](https://github.com/icinga/icingaweb2/issues) when you start contributing
+Please consider the milestones and
+open issues when you start contributing
 to the project.
 
 Before starting your work on this Icinga Web 2 for Grafana, you should [fork the project](https://help.github.com/articles/fork-a-repo/)
@@ -37,20 +37,15 @@ Please continue reading in the following sections for a step by step guide.
 ## <a id="contributing-fork"></a> Fork the Project
 
 [Fork the project](https://help.github.com/articles/fork-a-repo/) to your GitHub account
-and clone the repository:
-
-```
-git clone git@github.com:dnsmichi/icingaweb2-module-grafana.git
-cd icingaweb2-module-grafana
-```
+and clone the repository.
 
 Add a new remote `upstream` with this repository as value.
 
 ```
-git remote add upstream https://github.com/Mikesch-mp/icingaweb2-module-grafana.git
+git remote add upstream https://github.com/NETWAYS/icingaweb2-module-grafana.git
 ```
 
-You can pull updates to your fork's master branch:
+You can pull updates to your fork's main branch:
 
 ```
 git fetch --all
@@ -104,15 +99,15 @@ Don't worry, you can squash those changes into a single commit later on.
 
 ## <a id="contributing-pull-requests"></a> Pull Requests
 
-Once you've committed your changes, please update your local master
+Once you've committed your changes, please update your local main
 branch and rebase your fix/feature branch against it before submitting a PR.
 
 ```
-git checkout master
+git checkout main
 git pull upstream HEAD
 
 git checkout fix/style-detail-view
-git rebase master
+git rebase main
 ```
 
 Once you've resolved any conflicts, push the branch to your remote repository.
@@ -148,22 +143,22 @@ Thanks a lot for your contribution!
 
 ### <a id="contributing-rebase"></a> Rebase a Branch
 
-If you accidentally sent in a PR which was not rebased against the upstream master,
+If you accidentally sent in a PR which was not rebased against the upstream main,
 developers might ask you to rebase your PR.
 
-First off, fetch and pull `upstream` master.
+First off, fetch and pull `upstream` main.
 
 ```
-git checkout master
+git checkout main
 git fetch --all
 git pull upstream HEAD
 ```
 
-Then change to your working branch and start rebasing it against master:
+Then change to your working branch and start rebasing it against main:
 
 ```
 git checkout fix/style-detail-view
-git rebase master
+git rebase main
 ```
 
 If you are running into a conflict, rebase will stop and ask you to fix the problems.
@@ -196,7 +191,7 @@ If you fear to break things, do the rebase in a backup branch first and later re
 git checkout fix/style-detail-view
 git checkout -b fix/style-detail-view-rebase
 
-git rebase master
+git rebase main
 
 git branch -D fix/style-detail-view
 git checkout -b fix/style-detail-view
@@ -237,7 +232,7 @@ git push -f origin fix/style-detail-view
 
 ## <a id="contributing-testing"></a> Testing
 
-You can help test-drive the Git master inside the
+You can help test-drive the Git main inside the
 [Icinga 2 Vagrant boxes](https://github.com/icinga/icinga-vagrant).
 
     $ git clone https://github.com/Icinga/icinga-vagrant.git
