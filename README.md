@@ -10,7 +10,6 @@ This fork was created to provide bug fixes and maintenance.
 4. [Requirements](#requirements)
 5. [Documentation](#documentation)
 6. [Contributing](#contributing)
-7. [Donations](#donations)
 
 ## About
 
