@@ -74,7 +74,7 @@ class GraphForm extends ConfigForm
             array(
                 'placeholder'   => 'example 1 or 1,4,10 ...',
                 'label'         => $this->translate('PanelId(s)'),
-                'description'   => $this->translate('Single panelId or comma seperated list of panelIds that will be used to show the graph(s).'),
+                'description'   => $this->translate('Single panelId or comma separated list of panelIds that will be used to show the graph(s).'),
                 'required'      => true
             )
         );

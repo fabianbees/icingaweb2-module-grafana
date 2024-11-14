@@ -123,7 +123,7 @@ Existing branch:
 git push -f origin fix/style-detail-view
 ```
 
-You can now either use the [hub](https://hub.github.com) CLI tool to create a PR, or nagivate
+You can now either use the [hub](https://hub.github.com) CLI tool to create a PR, or navigate
 to your GitHub repository and create a PR there.
 
 The pull request should again contain a telling subject and a reference

@@ -113,7 +113,7 @@ class IcingadbimgController extends IcingadbGrafanaController
          */
         $this->shadows = $this->myConfig->get('shadows', $this->shadows);
         /**
-         * Name of the custom varibale for graph config
+         * Name of the custom variable for graph config
          */
         $this->custvarconfig = ($this->myConfig->get('custvarconfig', $this->custvarconfig));
         /**
