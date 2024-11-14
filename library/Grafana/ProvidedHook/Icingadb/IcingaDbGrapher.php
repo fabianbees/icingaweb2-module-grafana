@@ -133,16 +133,16 @@ trait IcingaDbGrapher
          */
         $this->shadows = $this->config->get('shadows', $this->shadows);
         /**
-         * Name of the custom varibale to disable graph
+         * Name of the custom variable to disable graph
          */
         $this->custvardisable = ($this->config->get('custvardisable', $this->custvardisable));
         /**
-         * Name of the custom varibale for graph config
+         * Name of the custom variable for graph config
          */
         $this->custvarconfig = ($this->config->get('custvarconfig', $this->custvarconfig));
 
         /**
-         * Show some debug informations?
+         * Show some debug information?
          */
         $this->debug = ($this->config->get('debug', $this->debug));
         /**

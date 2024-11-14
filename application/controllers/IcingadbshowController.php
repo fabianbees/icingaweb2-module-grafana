@@ -41,7 +41,7 @@ class IcingadbshowController extends IcingadbGrafanaController
         $this->host = $this->getParam('host');
         $this->config = Config::module('grafana')->getSection('grafana');
         /**
-         * Name of the custom varibale to disable graph
+         * Name of the custom variable to disable graph
          */
         $this->custvardisable = ($this->config->get('custvardisable', $this->custvardisable));
     }
