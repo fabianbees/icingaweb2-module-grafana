@@ -1,5 +1,7 @@
 # Grafana Module for Icinga Web 2
 
+This fork was created to provide bug fixes and maintenance.
+
 #### Table of Contents
 
 1. [About](#about)
