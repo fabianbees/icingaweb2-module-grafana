@@ -41,7 +41,9 @@ Join the [Icinga community channels](https://icinga.com/community/) for question
 * [Icinga Web 2](https://github.com/Icinga/icingaweb2) (>= 2.11)
 * [Icinga DB Web](https://github.com/Icinga/icingadb-web) (>= 1.02)
 * [Grafana](https://grafana.com/) (>= 7.0)
-* [InfluxDB](https://docs.influxdata.com/influxdb/) (>= 1.0) [Graphite](https://graphiteapp.org) as backend for Grafana
+* A data source as a backend for Grafana. Either:
+  * [InfluxDB](https://docs.influxdata.com/influxdb/) (>= 1.0)
+  * [Graphite](https://graphiteapp.org)
 * [PHP 8.1](https://www.php.net) **with curl and gd enabled**
 
 ## Documentation
