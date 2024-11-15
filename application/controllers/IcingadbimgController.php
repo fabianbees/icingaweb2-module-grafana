@@ -19,7 +19,6 @@ use Icinga\Module\Icingadb\Model\Service;
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
 
-#[\AllowDynamicProperties]
 class IcingadbimgController extends IcingadbGrafanaController
 {
     protected $host;
@@ -49,7 +48,13 @@ class IcingadbimgController extends IcingadbGrafanaController
     protected $cacheTime;
     protected $defaultdashboarduid;
     protected $refresh                 = "yes";
-
+    protected $customVars;
+    protected $timerangeto;
+    protected $object;
+    protected $dashboard;
+    protected $dashboarduid;
+    protected $panelId;
+    protected $orgId;
 
     public function init()
     {
@@ -66,7 +71,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         if ($this->hasParam('timerangeto')) {
             $this->timerangeto = urldecode($this->getParam('timerangeto'));
         } else {
-            $this->timerangeto = strpos($this->timerange, '/') ? 'now-' . $this->timerange : "now";
+            $this->timerangeto = strpos($this->timerange ?? '', '/') ? 'now-' . $this->timerange ?? '' : "now";
         }
         $this->cacheTime = $this->hasParam('cachetime') ? $this->getParam('cachetime') : 300;
 
@@ -326,7 +331,7 @@ class IcingadbimgController extends IcingadbGrafanaController
             return false;
         }
 
-        $this->pngUrl = sprintf(
+        $pngUrl = sprintf(
             '%s://%s/render/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s'
             . '&width=%s&height=%s&theme=%s&from=%s&to=%s',
             $this->protocol,
@@ -349,7 +354,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         // fetch image with curl
         $curl_handle = curl_init();
         $curl_opts = array(
-            CURLOPT_URL => $this->pngUrl,
+            CURLOPT_URL => $pngUrl,
             CURLOPT_CONNECTTIMEOUT => 2,
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_RETURNTRANSFER => true,

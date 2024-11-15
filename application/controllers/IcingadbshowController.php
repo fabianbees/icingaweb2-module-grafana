@@ -31,6 +31,8 @@ class IcingadbshowController extends IcingadbGrafanaController
     protected $showFullscreen;
     protected $host;
     protected $custvardisable = "grafana_graph_disable";
+    protected $config;
+    protected $object;
 
     public function init()
     {
