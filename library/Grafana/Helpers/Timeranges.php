@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: carst
- * Date: 19.02.2018
- * Time: 19:05
- */
 
 namespace Icinga\Module\Grafana\Helpers;
 

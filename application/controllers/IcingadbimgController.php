@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: carst
- * Date: 11.03.2018
- * Time: 07:18
- */
 
 namespace Icinga\Module\Grafana\Controllers;
 
