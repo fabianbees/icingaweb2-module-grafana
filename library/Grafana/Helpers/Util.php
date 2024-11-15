@@ -56,7 +56,7 @@ class Util
         
         $code = (string)$code;
         
-        if(array_key_exists($code, $statuscodes)) {
+        if (array_key_exists($code, $statuscodes)) {
             return $statuscodes[$code];
         } else {
             return $code;

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: carst
- * Date: 19.02.2018
- * Time: 19:05
- */
 
 namespace Icinga\Module\Grafana\Helpers;
 
@@ -12,14 +6,13 @@ use Icinga\Application\Icinga;
 use Icinga\Application\Modules\Module;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\IcingadbSupport;
 
-
 class Timeranges
 {
     private $urlparams;
     private $link;
     private $view;
 
-    static $timeRanges = array(
+    private static $timeRanges = array(
         'Minutes' => array(
             '5m' => '5 minutes',
             '15m' => '15 minutes',
@@ -95,9 +88,12 @@ class Timeranges
     {
         $url = 'grafana/icingadbdashboard?';
 
-        $clockIcon = $this->view->qlink($timerange, 'dashboard/new-dashlet',
+        $clockIcon = $this->view->qlink(
+            $timerange,
+            'dashboard/new-dashlet',
             ['url' => $url . http_build_query($this->urlparams, '', '&', PHP_QUERY_RFC3986)],
-            ['icon' => 'clock', 'title' => 'Add graph to dashboard']);
+            ['icon' => 'clock', 'title' => 'Add graph to dashboard']
+        );
 
         $menu = '<table class="grafana-table"><tr>';
         $menu .= '<td>' . $clockIcon . '</td>';
@@ -105,8 +101,10 @@ class Timeranges
             $menu .= '<td><ul class="grafana-menu-navigation"><a class="main" href="#">' . $key . '</a>';
             $counter = 1;
             foreach ($mainValue as $subkey => $value) {
-                $menu .= '<li class="grafana-menu-n' . $counter . '">' . $this->getTimerangeLink($value,
-                        $subkey) . '</li>';
+                $menu .= '<li class="grafana-menu-n' . $counter . '">' . $this->getTimerangeLink(
+                    $value,
+                    $subkey
+                ) . '</li>';
                 $counter++;
             }
             $menu .= '</ul></td>';
@@ -115,13 +113,13 @@ class Timeranges
         $timerange = urldecode($timerange);
         $timerangeto = urldecode($timerangeto);
 
-        if($this->isValidTimeStamp($timerange)) {
+        if ($this->isValidTimeStamp($timerange)) {
             $d = new \DateTime();
             $d->setTimestamp($timerange/1000);
             $timerange = $d->format("Y-m-d H:i:s");
         }
 
-        if($this->isValidTimeStamp($timerangeto)) {
+        if ($this->isValidTimeStamp($timerangeto)) {
             $d = new \DateTime();
             $d->setTimestamp($timerangeto/1000);
             $timerangeto = $d->format("Y-m-d H:i:s");

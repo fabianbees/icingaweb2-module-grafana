@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: carst
- * Date: 17.02.2018
- * Time: 20:09
- */
 
 namespace Icinga\Module\Grafana\Controllers;
 
@@ -23,7 +17,6 @@ use ipl\Html\HtmlElement;
 use ipl\Html\HtmlString;
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
-
 
 class IcingadbshowController extends IcingadbGrafanaController
 {
@@ -52,7 +45,7 @@ class IcingadbshowController extends IcingadbGrafanaController
     {
         $this->disableAutoRefresh();
 
-				/*
+                /*
         if (!$this->showFullscreen) {
             $this->getTabs()->add(
                 'graphs',
@@ -64,7 +57,7 @@ class IcingadbshowController extends IcingadbGrafanaController
 
             $this->getTabs()->extend(new PrintAction());
         }
-				*/
+                */
 
         $this->addControl(
             HtmlElement::create(

@@ -17,7 +17,7 @@ class HostDetailExtension extends HostDetailExtensionHook
         $graphs = $this->getPreviewHtml($host);
 
         if (! empty($graphs)) {
-          return HtmlString::create($graphs);
+            return HtmlString::create($graphs);
         }
 
         return HtmlString::create('');

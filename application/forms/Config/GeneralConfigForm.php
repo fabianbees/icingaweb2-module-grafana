@@ -45,7 +45,7 @@ class GeneralConfigForm extends ConfigForm
              )
         );
 
-        if (isset($formData['grafana_protocol']) && $formData['grafana_protocol'] === 'https' ) {
+        if (isset($formData['grafana_protocol']) && $formData['grafana_protocol'] === 'https') {
             $this->addElement(
                 'checkbox',
                 'grafana_ssl_verifypeer',
@@ -199,7 +199,7 @@ class GeneralConfigForm extends ConfigForm
                     'class' => 'autosubmit'
                 )
             );
-            if (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'basic' ) {
+            if (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'basic') {
                     $this->addElement(
                         'text',
                         'grafana_username',
@@ -219,7 +219,7 @@ class GeneralConfigForm extends ConfigForm
                             'required' => true
                         )
                     );
-            } elseif (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'token' ) {
+            } elseif (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'token') {
                 $this->addElement(
                     'text',
                     'grafana_apitoken',

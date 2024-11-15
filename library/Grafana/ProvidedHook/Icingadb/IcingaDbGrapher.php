@@ -353,7 +353,7 @@ trait IcingaDbGrapher
     {
         $this->object = $object;
         //$this->cacheTime = round($object->state->next_check - $object->state->last_update);
-				$this->cacheTime = 0;
+                $this->cacheTime = 0;
 
         if ($object instanceof Host) {
             $serviceName = $object->checkcommand_name;
@@ -390,7 +390,7 @@ trait IcingaDbGrapher
 
         $customvars = $this->getDb()->fetchPairs($varsFlat->assembleSelect());
 
-        if ($object->perfdata_enabled == "n" || (( isset($customvars[$this->custvardisable]) && json_decode(strtolower($customvars[$this->custvardisable])) !== false)) ) {
+        if ($object->perfdata_enabled == "n" || (( isset($customvars[$this->custvardisable]) && json_decode(strtolower($customvars[$this->custvardisable])) !== false))) {
             return '';
         }
 
