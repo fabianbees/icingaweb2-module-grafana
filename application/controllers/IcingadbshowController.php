@@ -24,7 +24,6 @@ use ipl\Html\HtmlString;
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
 
-
 class IcingadbshowController extends IcingadbGrafanaController
 {
     /** @var bool */
@@ -52,7 +51,7 @@ class IcingadbshowController extends IcingadbGrafanaController
     {
         $this->disableAutoRefresh();
 
-				/*
+                /*
         if (!$this->showFullscreen) {
             $this->getTabs()->add(
                 'graphs',
@@ -64,7 +63,7 @@ class IcingadbshowController extends IcingadbGrafanaController
 
             $this->getTabs()->extend(new PrintAction());
         }
-				*/
+                */
 
         $this->addControl(
             HtmlElement::create(

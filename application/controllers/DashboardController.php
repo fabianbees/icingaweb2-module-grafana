@@ -46,5 +46,4 @@ class DashboardController extends Controller
         $graph = new Grapher();
         $this->view->graph = $graph->getPreviewHtml($object);
     }
-
 }

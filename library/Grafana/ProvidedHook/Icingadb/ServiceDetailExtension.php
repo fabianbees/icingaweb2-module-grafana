@@ -17,10 +17,10 @@ class ServiceDetailExtension extends ServiceDetailExtensionHook
         //$this->object = $service;
         $graphs = $this->getPreviewHtml($service);
 
-				if (! empty($graphs)) {
-					return HtmlString::create($graphs);
+        if (! empty($graphs)) {
+            return HtmlString::create($graphs);
         }
 
-				return HtmlString::create('');
+                return HtmlString::create('');
     }
 }
