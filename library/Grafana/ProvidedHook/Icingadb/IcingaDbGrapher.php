@@ -299,7 +299,7 @@ trait IcingaDbGrapher
                 "class" => $imgClass
             ];
 
-            $imgHtml = Html::tag('div', ["style" => "min-height: $this->height" . "px"]);
+            $imgHtml = Html::tag('div');
             $imgHtml->addHtml(
                 Html::tag(
                     'img',
@@ -333,7 +333,7 @@ trait IcingaDbGrapher
                     "src" => $iFramesrc,
                     "alt" => rawurlencode($serviceName),
                     "height" => $this->height,
-                    "style" => "width: 100%; border: none;"
+                    "class" => "module-grafana-iframe",
                 ]
             );
 
@@ -777,7 +777,7 @@ trait IcingaDbGrapher
 
         $htmlForObject = HtmlElement::create(
             "div",
-            ["class" => "icinga-module module-grafana", "style" => "display: inline-block; width: 100%"]
+            ["class" => "icinga-module module-grafana"]
         );
 
         $htmlForObject->add($this->title);
