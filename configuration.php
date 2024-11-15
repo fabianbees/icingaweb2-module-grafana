@@ -17,18 +17,17 @@ $this->provideConfigTab('config', array(
     'url' => 'config'
 ));
 
-if ($auth->hasPermission('grafana/graphconfig'))
-{
-   $section = $this->menuSection('Grafana Graphs')->setUrl('grafana/graph')->setPriority(999)->setIcon('chart-area');
+if ($auth->hasPermission('grafana/graphconfig')) {
+    $section = $this->menuSection('Grafana Graphs')->setUrl('grafana/graph')->setPriority(999)->setIcon('chart-area');
 
-   $section->add(N_('Graphs Configuration'))->setUrl('grafana/graph')->setPriority(30);
-   $section->add(N_('Module Configuration'))->setUrl('grafana/config')->setPriority(40);
+    $section->add(N_('Graphs Configuration'))->setUrl('grafana/graph')->setPriority(30);
+    $section->add(N_('Module Configuration'))->setUrl('grafana/config')->setPriority(40);
 
-   $this->provideConfigTab('graph', array(
+    $this->provideConfigTab('graph', array(
        'title' => 'Graphs',
        'label' => 'Graphs',
        'url' => 'graph'
-   ));
+    ));
 }
 
 $this->provideJsFile('behavior/iframe.js');
