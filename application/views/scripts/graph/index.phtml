@@ -4,12 +4,12 @@
         $this->translate('Add New Grafana Graph') ,
         'grafana/graph/new',
         null,
-        array(
+        [
             'class' => 'action-link',
             'data-base-target' => '_next',
             'icon' => 'plus',
             'title' => $this->translate('Add a new Grafana graph.')
-        )
+        ]
     ) ?>
 </div>
 <div class="content">
@@ -39,8 +39,8 @@
                     <?= $this->qlink(
                         $name,
                         'grafana/graph/update',
-                        array('graph' => $name),
-                        array('title' => sprintf($this->translate('Update Grafana graph %s'), $name))
+                        ['graph' => $name],
+                        ['title' => sprintf($this->translate('Update Grafana graph %s'), $name)]
                     ) ?>
                 </td>
                 <td><?= $this->escape($graph->dashboard) ?></td>
@@ -57,12 +57,12 @@
                     <?= $this->qlink(
                         '',
                         'grafana/graph/remove',
-                        array('graph' => $name),
-                        array(
+                        ['graph' => $name],
+                        [
                             'class' => 'action-link',
                             'icon' => 'cancel',
                             'title' => sprintf($this->translate('Remove Grafana graph %s'), $name)
-                        )
+                        ]
                     ) ?>
                 </td>
             </tr>

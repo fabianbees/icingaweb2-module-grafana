@@ -38,116 +38,116 @@ class GraphForm extends ConfigForm
         $this->addElement(
             'text',
             'name',
-            array(
+            [
                 'description' => $this->translate('The name of the service or check_command which should use a premade dashboard'),
                 'label' => $this->translate('Name'),
                 'required' => true
-            )
+            ]
         );
 
         $this->addElement(
             'text',
             'dashboard',
-            array(
+            [
                 'placeholder' => 'DashboardName',
                 'label' => $this->translate('Dashboard name'),
                 'description' => $this->translate('Name of the Grafana dashboard that will be used.'),
                 'required' => true
-            )
+            ]
         );
 
         $this->addElement(
             'text',
             'dashboarduid',
-            array(
+            [
                 'label' => $this->translate('Dashboard UID'),
                 'description' => $this->translate('UID of the dashboard.'),
                 'required' => true,
-            )
+            ]
         );
 
         $this->addElement(
             'text',
             'panelId',
-            array(
+            [
                 'placeholder' => 'example 1 or 1,4,10 ...',
                 'label' => $this->translate('PanelId(s)'),
                 'description' => $this->translate('Single panelId or comma separated list of panelIds that will be used to show the graph(s).'),
                 'required' => true
-            )
+            ]
         );
 
         $this->addElement(
             'number',
             'orgId',
-            array(
+            [
                 'placeholder' => 'example 1 ...',
                 'label' => $this->translate('OrganizationId'),
                 'description' => $this->translate('Organization id where the dashboard is located.'),
                 'required' => false
-            )
+            ]
         );
 
         $this->addElement(
             'text',
             'customVars',
-            array(
+            [
                 'placeholder' => '&var-example=$my_variable$',
                 'label' => $this->translate('Custom Variables'),
                 'description' => $this->translate('Custom variables from monitoring'),
                 'required' => false
-            )
+            ]
         );
 
         $this->addElement(
             'select',
             'timerange',
-            array(
+            [
                 'label' => $this->translate('Timerange'),
-                'multiOptions' => array_merge(array('' => 'Use default'), Timeranges::getTimeranges()),
+                'multiOptions' => array_merge(['' => 'Use default'], Timeranges::getTimeranges()),
                 'description' => $this->translate('Timerange to use for the graph.'),
                 'required' => false
-            )
+            ]
         );
         $this->addElement(
             'number',
             'height',
-            array(
+            [
                 'label' => $this->translate('Graph height'),
                 'description' => $this->translate('The graph height in pixel.'),
                 'required' => false
-            )
+            ]
         );
         $this->addElement(
             'number',
             'width',
-            array(
+            [
                 'label' => $this->translate('Graph width'),
                 'description' => $this->translate('The graph width in pixel.'),
                 'required' => false
-            )
+            ]
         );
         $this->addElement(
             'select',
             'repeatable',
-            array(
+            [
                 'label' => $this->translate('Repeating Panel'),
                 'value' => 'no',
-                'multiOptions' => array(
+                'multiOptions' => [
                     'yes' => $this->translate('Yes'),
                     'no' => $this->translate('No'),
-                ),
+                ],
                 'description' => $this->translate('Is this an auto repeating panel dashboard?'),
-            )
+            ]
         );
         $this->addElement(
             'number',
             'nmetrics',
-            array(
+            [
                 'label' => $this->translate('Metrics per panel'),
                 'description' => $this->translate('The number of metrics in an auto repeating panel'),
                 'required' => false
-            )
+            ]
         );
     }
 
@@ -182,8 +182,8 @@ class GraphForm extends ConfigForm
     public function onSuccess()
     {
         $name = $this->getElement('name')->getValue();
-        $values = array(
-            'dashboard'=> $this->getElement('dashboard')->getValue(),
+        $values = [
+            'dashboard' => $this->getElement('dashboard')->getValue(),
             'panelId' => $this->getElement('panelId')->getValue(),
             'orgId' => $this->getElement('orgId')->getValue(),
             'customVars' => $this->getElement('customVars')->getValue(),
@@ -193,7 +193,7 @@ class GraphForm extends ConfigForm
             'repeatable' => $this->getElement('repeatable')->getValue(),
             'nmetrics' => $this->getElement('nmetrics')->getValue(),
             'dashboarduid' => $this->getElement('dashboarduid')->getValue()
-        );
+        ];
 
         if (empty($values['timerange'])) {
             $values['timerange'] = null;

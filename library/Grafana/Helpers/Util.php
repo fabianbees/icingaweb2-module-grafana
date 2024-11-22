@@ -13,7 +13,7 @@ class Util
     }
     public static function httpStatusCodetoString($code = 0)
     {
-        $statuscodes = array(
+        $statuscodes = [
             '100' => 'Continue',
             '101' => 'Switching Protocols',
             '200' => 'OK',
@@ -52,7 +52,7 @@ class Util
             '503' => 'Service Unavailable',
             '504' => 'Gateway Timeout',
             '505' => 'HTTP Version Not Supported'
-        );
+        ];
 
         $code = (string)$code;
 

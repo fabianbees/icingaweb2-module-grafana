@@ -359,17 +359,15 @@ trait IcingaDbGrapher
             $serviceName = $object->checkcommand_name;
             $hostName = $object->name;
             $link = Links::host($object);
-            $parameters = array(
-                            'host' => $hostName,
-            );
+            $parameters = [ 'host' => $hostName ];
         } elseif ($object instanceof Service) {
             $serviceName = $object->name;
             $hostName = $object->host->name;
             $link = Links::service($object, $object->host);
-            $parameters = array(
-                            'host' => $hostName,
-                            'service' => $serviceName,
-            );
+            $parameters = [
+                'host' => $hostName,
+                'service' => $serviceName,
+            ];
         }
 
         $parameters['timerange'] = $this->timerange;

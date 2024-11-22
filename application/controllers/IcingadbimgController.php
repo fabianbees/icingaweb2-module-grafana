@@ -348,7 +348,7 @@ class IcingadbimgController extends IcingadbGrafanaController
 
         // fetch image with curl
         $curl_handle = curl_init();
-        $curl_opts = array(
+        $curl_opts = [
             CURLOPT_URL => $pngUrl,
             CURLOPT_CONNECTTIMEOUT => 2,
             CURLOPT_FOLLOWLOCATION => true,
@@ -356,7 +356,7 @@ class IcingadbimgController extends IcingadbGrafanaController
             CURLOPT_SSL_VERIFYPEER => $this->SSLVerifyPeer,
             CURLOPT_SSL_VERIFYHOST => ($this->SSLVerifyHost) ? 2 : 0,
             CURLOPT_TIMEOUT => $this->proxyTimeout,
-        );
+        ];
 
         if ($this->authentication == "token") {
             $curl_opts[CURLOPT_HTTPHEADER] = [
