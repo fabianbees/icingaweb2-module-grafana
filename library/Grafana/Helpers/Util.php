@@ -5,7 +5,7 @@ namespace Icinga\Module\Grafana\Helpers;
 class Util
 {
 
-    public static function graphiteReplace($string = "")
+    public static function graphiteReplace($string = '')
     {
         $string = preg_replace('/[^a-zA-Z0-9\*\-:]/', '_', $string);
 
@@ -53,13 +53,13 @@ class Util
             '504' => 'Gateway Timeout',
             '505' => 'HTTP Version Not Supported'
         );
-        
+
         $code = (string)$code;
-        
+
         if (array_key_exists($code, $statuscodes)) {
             return $statuscodes[$code];
-        } else {
-            return $code;
         }
+
+        return $code;
     }
 }

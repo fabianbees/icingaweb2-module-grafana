@@ -1,7 +1,5 @@
 <?php
 
-/* Icinga Graphite Web | (c) 2022 Icinga GmbH | GPLv2 */
-
 namespace Icinga\Module\Grafana\Web\Controller;
 
 use Icinga\Application\Modules\Module;

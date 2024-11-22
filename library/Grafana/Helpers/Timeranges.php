@@ -3,8 +3,6 @@
 namespace Icinga\Module\Grafana\Helpers;
 
 use Icinga\Application\Icinga;
-use Icinga\Application\Modules\Module;
-use Icinga\Module\Grafana\ProvidedHook\Icingadb\IcingadbSupport;
 
 class Timeranges
 {
@@ -52,7 +50,7 @@ class Timeranges
         )
     );
 
-    public function __construct(array $array = array(), $link = "")
+    public function __construct(array $array = array(), $link = '')
     {
         $this->urlparams = $array;
         $this->link = $link;
@@ -129,7 +127,7 @@ class Timeranges
         return $menu;
     }
 
-    public function getTimerangeMenu($timerange = "", $timerangeto = "")
+    public function getTimerangeMenu($timerange = '', $timerangeto = '')
     {
         return $this->buildTimerangeMenu($timerange, $timerangeto);
     }

@@ -56,7 +56,9 @@ class IcingadbdashboardController extends IcingadbGrafanaController
         }
 
         $this->applyRestrictions($query);
+
         $object = $query->first();
+
         if ($object === null) {
             throw new NotFoundError(t('Host or Service not found'));
         }
