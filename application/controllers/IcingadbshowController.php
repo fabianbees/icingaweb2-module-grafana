@@ -6,7 +6,6 @@ use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\HostDetailExtension;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
-use Icinga\Module\Grafana\Web\Widget\PrintAction;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
 use Icinga\Module\Icingadb\Model\Host;
 use Icinga\Module\Icingadb\Model\Service;
@@ -16,14 +15,13 @@ use ipl\Html\HtmlDocument;
 use ipl\Html\HtmlElement;
 use ipl\Html\HtmlString;
 use ipl\Stdlib\Filter;
-use ipl\Web\Url;
 
 class IcingadbshowController extends IcingadbGrafanaController
 {
     /** @var bool */
     protected $showFullscreen;
     protected $host;
-    protected $custvardisable = "grafana_graph_disable";
+    protected $custvardisable = 'grafana_graph_disable';
     protected $config;
     protected $object;
 
@@ -44,20 +42,6 @@ class IcingadbshowController extends IcingadbGrafanaController
     public function indexAction()
     {
         $this->disableAutoRefresh();
-
-                /*
-        if (!$this->showFullscreen) {
-            $this->getTabs()->add(
-                'graphs',
-                [
-                    'label' => $this->translate('Grafana Graphs'),
-                    'url' => $this->getRequest()->getUrl()
-                ]
-            )->activate('graphs');
-
-            $this->getTabs()->extend(new PrintAction());
-        }
-                */
 
         $this->addControl(
             HtmlElement::create(
@@ -133,7 +117,7 @@ class IcingadbshowController extends IcingadbGrafanaController
     }
 
 
-    public function getHostObject($host)
+    public function getHostObject(string $host): Host
     {
         $query = Host::on($this->getDb())->with(['state', 'icon_image']);
         $query->filter(Filter::equal('name', $host));
@@ -147,7 +131,7 @@ class IcingadbshowController extends IcingadbGrafanaController
         return $host;
     }
 
-    public function getServiceObject($service, $host)
+    public function getServiceObject(string $service, string $host): Service
     {
         $query = Service::on($this->getDb());
 

@@ -23,10 +23,10 @@ class PrintAction implements Tabextension
         $tabs->addAsDropdown(
             'print',
             [
-                'icon'      => 'print',
-                'target'    => '_blank',
-                'label'     => t('Print'),
-                'url'       => (htmlspecialchars_decode(Url::fromRequest()->getAbsoluteUrl())). '&showFullscreen=1',
+                'icon' => 'print',
+                'target' => '_blank',
+                'label' => t('Print'),
+                'url' => (htmlspecialchars_decode(Url::fromRequest()->getAbsoluteUrl())). '&showFullscreen=1',
             ]
         );
     }

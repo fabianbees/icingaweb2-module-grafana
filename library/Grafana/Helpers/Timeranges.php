@@ -3,8 +3,6 @@
 namespace Icinga\Module\Grafana\Helpers;
 
 use Icinga\Application\Icinga;
-use Icinga\Application\Modules\Module;
-use Icinga\Module\Grafana\ProvidedHook\Icingadb\IcingadbSupport;
 
 class Timeranges
 {
@@ -12,47 +10,47 @@ class Timeranges
     private $link;
     private $view;
 
-    private static $timeRanges = array(
-        'Minutes' => array(
+    private static $timeRanges = [
+        'Minutes' => [
             '5m' => '5 minutes',
             '15m' => '15 minutes',
             '30m' => '30 minutes',
             '45m' => '45 minutes'
-        ),
-        'Hours' => array(
+        ],
+        'Hours' => [
             '1h' => '1 hour',
             '3h' => '3 hours',
             '6h' => '6 hours',
             '8h' => '8 hours',
             '12h' => '12 hours',
             '24h' => '24 hours'
-        ),
-        'Days' => array(
+        ],
+        'Days' => [
             '2d' => '2 days',
             '7d' => '7 days',
             '14d' => '14 days',
             '30d' => '30 days',
-        ),
-        'Months' => array(
+        ],
+        'Months' => [
             '2M' => '2 month',
             '6M' => '6 months',
             '9M' => '9 months'
-        ),
-        'Years' => array(
+        ],
+        'Years' => [
             '1y' => '1 year',
             '2y' => '2 years',
             '3y' => '3 years'
-        ),
-        'Special' => array(
+        ],
+        'Special' => [
             '1d/d' => 'Yesterday',
             '2d/d' => 'Day b4 yesterday',
             '1w/w' => 'Previous week',
             '1M/M' => 'Previous month',
             '1Y/Y' => 'Previous Year',
-        )
-    );
+        ]
+    ];
 
-    public function __construct(array $array = array(), $link = "")
+    public function __construct(array $array = [], string $link = '')
     {
         $this->urlparams = $array;
         $this->link = $link;
@@ -60,7 +58,7 @@ class Timeranges
         $this->view = Icinga::app()->getViewRenderer()->view;
     }
 
-    private function getTimerangeLink($rangeName, $timeRange)
+    private function getTimerangeLink(string $rangeName, string $timeRange)
     {
         $this->urlparams['timerange'] = $timeRange;
 
@@ -68,11 +66,11 @@ class Timeranges
             $rangeName,
             $this->link,
             $this->urlparams,
-            array(
+            [
                 'class' => 'action-link',
                 'data-base-target' => '_self',
                 'title' => 'Set timerange for graph(s) to ' . $rangeName
-            )
+            ]
         );
     }
 
@@ -84,7 +82,7 @@ class Timeranges
             && ($timestamp >= ~PHP_INT_MAX);
     }
 
-    private function buildTimerangeMenu($timerange = "", $timerangeto = "")
+    private function buildTimerangeMenu(string $timerange = '', string $timerangeto = '')
     {
         $url = 'grafana/icingadbdashboard?';
 
@@ -129,7 +127,7 @@ class Timeranges
         return $menu;
     }
 
-    public function getTimerangeMenu($timerange = "", $timerangeto = "")
+    public function getTimerangeMenu(string $timerange = '', string $timerangeto = '')
     {
         return $this->buildTimerangeMenu($timerange, $timerangeto);
     }

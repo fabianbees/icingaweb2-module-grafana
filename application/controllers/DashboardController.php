@@ -23,11 +23,11 @@ class DashboardController extends Controller
             $this->redirectNow(Url::fromPath('grafana/icingadbdashboard')->setQueryString($this->params));
         }
 
-        $this->getTabs()->add('graphs', array(
+        $this->getTabs()->add('graphs', [
             'active' => true,
             'label' => $this->translate('Graphs'),
             'url' => $this->getRequest()->getUrl()
-        ));
+        ]);
 
         $hostname = $this->params->getRequired('host');
         $servicename = $this->params->get('service');
