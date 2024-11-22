@@ -1,9 +1,8 @@
 # Module configuration
 Here you will learn how to configure the module and details about the options you can choose.
 
----
-
 ## Global configuration
+
 The configuration can be done via web interface or by editing the configuration ini-file directly.
 
 ### Configuration with web interface

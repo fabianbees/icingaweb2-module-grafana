@@ -4,8 +4,8 @@ You can add specific [graph configuration](/icingaweb2/grafana/graph) settings i
 
 ![Graph Configuration Menu](images/04-graph.configuration-01.png)
 
----
 ## Options
+
 |Setting            | Description|
 |-------------------|-------------------|
 |name               | **Required.** The name of the `service` (not the `display_name`) or `parametrized service name` or `check_command` where a graph should be rendered.|
@@ -21,6 +21,7 @@ You can add specific [graph configuration](/icingaweb2/grafana/graph) settings i
 |nmetrics           | **Optional.** Defines the number of metrics in an auto repeating panel. Defaults to 1 if repeatable is yes.|
 
 Example:
+
 ```
 vim /etc/icingaweb2/modules/grafana/graphs.ini
 
@@ -37,8 +38,6 @@ repeatable = "yes"
 nmetrics = "1"
 
 ```
-
----
 
 ## Service(s)
 
@@ -109,16 +108,14 @@ Number of service perfdata metrics / number of metrics per panel config (nmetric
 The Dashboard needs templating for metrics of a service like
 ```
 SHOW TAG VALUES FROM /^COMMAND_NAME$/ WITH KEY = "metric" where hostname =~ /^$hostname$/ and service =~ /^$service$/
-``` 
+```
 
 See [Repeating Rows and Panels](http://docs.grafana.org/guides/whats-new-in-v2-1/#repeating-rows-and-panels) for more information.
 
----
-
 ## Host(s)
 
-For host you just need to use the `check_command` name as service name for the graph configuration. 
-The default `check_command` mostly `hostalive`. To get a list of your hosts and the check_command 
+For host you just need to use the `check_command` name as service name for the graph configuration.
+The default `check_command` mostly `hostalive`. To get a list of your hosts and the check_command
 used for the host use this code snippet in your shell
 
 ```bash
@@ -135,8 +132,6 @@ koebbes -> hostalive
 koelin02 -> hostalive
 koenas.fritz.box -> hostalive
 ```
-
----
 
 ### Add host graph
 

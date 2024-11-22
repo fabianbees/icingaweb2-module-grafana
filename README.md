@@ -40,10 +40,13 @@ Join the [Icinga community channels](https://icinga.com/community/) for question
 * [Icinga Web 2](https://github.com/Icinga/icingaweb2) (>= 2.11)
 * [Icinga DB Web](https://github.com/Icinga/icingadb-web) (>= 1.02)
 * [Grafana](https://grafana.com/) (>= 7.0)
-* A data source as a backend for Grafana. Either:
-  * [InfluxDB](https://docs.influxdata.com/influxdb/) (>= 1.0)
-  * [Graphite](https://graphiteapp.org)
-* [PHP 8.1](https://www.php.net) **with curl and gd enabled**
+  * [Grafana Image Renderer](https://grafana.com/grafana/plugins/grafana-image-renderer/) (when using proxy access)
+* [PHP 8.1](https://www.php.net) (with curl and gd enabled)
+
+A data source as a backend for Grafana. Either:
+
+* [InfluxDB](https://docs.influxdata.com/influxdb/) (>= 1.0)
+* [Graphite](https://graphiteapp.org)
 
 ## Documentation
 
