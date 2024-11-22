@@ -50,7 +50,7 @@ class Timeranges
         ]
     ];
 
-    public function __construct(array $array = [], $link = '')
+    public function __construct(array $array = [], string $link = '')
     {
         $this->urlparams = $array;
         $this->link = $link;
@@ -58,7 +58,7 @@ class Timeranges
         $this->view = Icinga::app()->getViewRenderer()->view;
     }
 
-    private function getTimerangeLink($rangeName, $timeRange)
+    private function getTimerangeLink(string $rangeName, string $timeRange)
     {
         $this->urlparams['timerange'] = $timeRange;
 
@@ -82,7 +82,7 @@ class Timeranges
             && ($timestamp >= ~PHP_INT_MAX);
     }
 
-    private function buildTimerangeMenu($timerange = "", $timerangeto = "")
+    private function buildTimerangeMenu(string $timerange = '', string $timerangeto = '')
     {
         $url = 'grafana/icingadbdashboard?';
 
@@ -127,7 +127,7 @@ class Timeranges
         return $menu;
     }
 
-    public function getTimerangeMenu($timerange = '', $timerangeto = '')
+    public function getTimerangeMenu(string $timerange = '', string $timerangeto = '')
     {
         return $this->buildTimerangeMenu($timerange, $timerangeto);
     }

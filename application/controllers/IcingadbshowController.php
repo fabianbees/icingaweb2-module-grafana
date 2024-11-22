@@ -117,7 +117,7 @@ class IcingadbshowController extends IcingadbGrafanaController
     }
 
 
-    public function getHostObject($host)
+    public function getHostObject(string $host): Host
     {
         $query = Host::on($this->getDb())->with(['state', 'icon_image']);
         $query->filter(Filter::equal('name', $host));
@@ -131,7 +131,7 @@ class IcingadbshowController extends IcingadbGrafanaController
         return $host;
     }
 
-    public function getServiceObject($service, $host)
+    public function getServiceObject(string $service, string $host): Service
     {
         $query = Service::on($this->getDb());
 
