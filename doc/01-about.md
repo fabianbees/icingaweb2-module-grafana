@@ -23,3 +23,24 @@ LICENSE file included in the source package.
 ## Support
 
 [GitHub Issues](https://github.com/NETWAYS/icingaweb2-module-grafana/issues)
+
+## Thanks
+
+Thanks for bug reporting/fixing or enhancements goes to:
+
+* Thilo W.
+* Robert G.
+* Peter N.
+* Alex
+* Michael F.
+* Martin N.
+* Emerson P.
+* Markus (mj84)
+* Matthias (matthiaswe)
+* Jon B.
+* Nicolai B.
+* Eric L.
+* Benjamin S.
+* Lasse W. & Ruben M.
+* Bernhard F. & Garrett S.
+* raviks789 (IcingaDB support)

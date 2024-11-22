@@ -1,50 +1,7 @@
 Name: Grafana
-Version: 2.0.3
+Version: 3.0.0-unreleased
 Requires:
   Libraries: icinga-php-library (>=0.10.1)
   Modules: icingadb (>=1.0.0)
 Description: Grafana - A perfdata visualisation module
  Shows Grafana panels for captured metrics.
-
- This module requires:
-
- * Grafana (>= 7.0) with basic auth enabled, anonymous access or api token.
-
- * InfluxDB or Graphite as datasource backend.
-
- * PHP 8.1 with curl enabled (for proxy modes)
-
-
- Thanks for bug reporting/fixing or enhancements goes to:
-
- Thilo W.
-
- Robert G.
-
- Peter N.
-
- Alex
-
- Michael F.
-
- Martin N.
-
- Emerson P.
-
- Markus (mj84)
-
- Matthias (matthiaswe)
-
- Jon B.
-
- Nicolai B.
-
- Eric L.
-
- Benjamin S.
-
- Lasse W. & Ruben M.
-
- Bernhard F. & Garrett S.
-
- raviks789 (IcingaDB support)
