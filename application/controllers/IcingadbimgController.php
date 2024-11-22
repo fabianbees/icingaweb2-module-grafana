@@ -193,7 +193,7 @@ class IcingadbimgController extends IcingadbGrafanaController
                 $this->customVars = str_replace($search, $replace, $this->customVars);
             }
 
-            // urlencodee values
+            // urlencode values
             $customVars = "";
             foreach (preg_split('/\&/', $this->customVars, -1, PREG_SPLIT_NO_EMPTY) as $param) {
                 $arr = explode("=", $param);
