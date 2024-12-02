@@ -44,7 +44,7 @@ datasource = "influxdb"
 defaultdashboardstore = "db"
 accessmode = "proxy"
 timeout = "5"
-directrefresh = "no"
+enablecache = "no"
 usepublic = "no"
 publichost = "otherhost:3000"
 publicprotocol = "http"
@@ -80,7 +80,7 @@ ssl_verifyhost = "0"
 |username               | **Proxy with basic only** **Required** HTTP Basic Auth user name to access Grafana.|
 |password               | **Proxy with basic only** **Required** HTTP Basic Auth password to access Grafana. Requires the username setting.|
 |apitoken               | **Proxy with token only** **Required** Token of a Service Account to access Grafana.|
-|indirectproxyrefresh   | **Indirect Proxy Only** **Optional.** Refresh graphs on indirect proxy mode. Defaults to `yes`.|
+|enablecache            | **Indirect Proxy Only** **Optional.** Enables or disable caching graphs. Defaults to `yes`. |
 |usepublic              | **Optional** Enable usage of publichost/protocol. Defaults to `no`.|
 |publichost             | **Optional** Use a different host for the graph links.|
 |publicprotocol         | **Optional** Use a different protocol for the graph links.|
@@ -190,9 +190,10 @@ The password used to authenticate to Grafana server.
 For token access you need to create a Service Account and assign it a token.
 See the [Grafana Docs](https://grafana.com/docs/grafana/latest/administration/service-accounts/).
 
-### indirectproxyrefresh
-Only for `indirectproxy` access mode. Enables or disable graph refresh with an interval of the service interval.
-Defaults to `yes`.
+### enablecache
+Only for `indirectproxy` access mode. Enables or disable caching graphs. Defaults to `yes`.
+
+Note that depending on your browser images might be cached implicitly.
 
 ### usepublic
 Enables/Disables the usage of a `public` URL to the Grafana server.

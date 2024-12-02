@@ -352,8 +352,8 @@ trait IcingaDbGrapher
     public function getPreviewHtml(Model $object, $report = false)
     {
         $this->object = $object;
-        //$this->cacheTime = round($object->state->next_check - $object->state->last_update);
-                $this->cacheTime = 0;
+        // Use the cachetime based on the check intervals
+        $this->cacheTime = $object->check_interval;
 
         if ($object instanceof Host) {
             $serviceName = $object->checkcommand_name;
