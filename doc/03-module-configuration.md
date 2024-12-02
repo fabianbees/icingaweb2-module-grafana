@@ -79,7 +79,7 @@ ssl_verifyhost = "0"
 |authentication         | **Proxy only** Authentication type used to access Grafana. Can be set to `anon`,`token` or `basic`. Defaults to `anon`.
 |username               | **Proxy with basic only** **Required** HTTP Basic Auth user name to access Grafana.|
 |password               | **Proxy with basic only** **Required** HTTP Basic Auth password to access Grafana. Requires the username setting.|
-|apitoken               | **Proxy with token only** **Required** API token used to access Grafana.|
+|apitoken               | **Proxy with token only** **Required** Token of a Service Account to access Grafana.|
 |indirectproxyrefresh   | **Indirect Proxy Only** **Optional.** Refresh graphs on indirect proxy mode. Defaults to `yes`.|
 |usepublic              | **Optional** Enable usage of publichost/protocol. Defaults to `no`.|
 |publichost             | **Optional** Use a different host for the graph links.|
@@ -176,7 +176,7 @@ If you often get a timeout message then the image, raise this to 10 or more seco
 Authentication type used to access Grafana. Can be set to `anon`,`token` or `basic`. Defaults to `anon`.
  * `anon` needs enabled [auth.anonymous] enabled in grafana.ini.
  * `basic` needs [auth.basic] enabled in grafana.ini.
- * `token` needs a generated API token from Grafana.
+ * `token` needs a Service Accounts's token from Grafana.
 
 ### username
 Used with 'proxy' mode, non anonymous access only.
@@ -187,7 +187,8 @@ Used with 'proxy' mode, non anonymous access only.
 The password used to authenticate to Grafana server.
 
 ### apitoken
-API token used to access Grafana. See [Create API Token](http://docs.grafana.org/http_api/auth/#create-api-token) for details how to create a API token.
+For token access you need to create a Service Account and assign it a token.
+See the [Grafana Docs](https://grafana.com/docs/grafana/latest/administration/service-accounts/).
 
 ### indirectproxyrefresh
 Only for `indirectproxy` access mode. Enables or disable graph refresh with an interval of the service interval.
