@@ -94,7 +94,8 @@ If you want to allow anonymous access (read only) enable "Anonymous Auth" in gra
  org_role = Viewer
 ```
 
-For API-Token access you need to create an API-Token with Grafana. See the [Grafana Docs](http://docs.grafana.org/tutorials/api_org_token_howto/#how-to-create-a-new-organization-and-an-api-token) on how to create one
+For token access you need to create a Service Account and assign it a token.
+See the [Grafana Docs](https://grafana.com/docs/grafana/latest/administration/service-accounts/).
 
 ### For 'iframe' mode
 
