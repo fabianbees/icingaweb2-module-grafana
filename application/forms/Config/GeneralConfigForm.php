@@ -192,7 +192,7 @@ class GeneralConfigForm extends ConfigForm
                     'value' => 'anon',
                     'multiOptions' => [
                         'anon' => $this->translate('Anonymous'),
-                        'token' => $this->translate('API Token'),
+                        'token' => $this->translate('Service Account'),
                         'basic' => $this->translate('Username & Password'),
                     ],
                     'description' => $this->translate('Authentication type used for Grafana access.'),
@@ -221,11 +221,12 @@ class GeneralConfigForm extends ConfigForm
                     );
             } elseif (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'token') {
                 $this->addElement(
-                    'text',
+                    'password',
                     'grafana_apitoken',
                     [
+                        'renderPassword' => true,
                         'label' => $this->translate('API Token'),
-                        'description' => $this->translate('The API token used to access Grafana.'),
+                        'description' => $this->translate('The Service Account token used to access Grafana.'),
                         'required' => true
                     ]
                 );
