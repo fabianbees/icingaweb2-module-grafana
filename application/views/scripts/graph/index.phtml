@@ -1,14 +1,14 @@
 <div class="controls">
     <?= $tabs ?>
     <?= $this->qlink(
-        $this->translate('Add New Grafana Graph') ,
+        $this->translate('Add graph') ,
         'grafana/graph/new',
         null,
         [
             'class' => 'action-link',
             'data-base-target' => '_next',
             'icon' => 'plus',
-            'title' => $this->translate('Add a new Grafana graph.')
+            'title' => $this->translate('Add graph')
         ]
     ) ?>
 </div>
@@ -22,12 +22,12 @@
                 <th><?= $this->translate('Name') ?></th>
                 <th><?= $this->translate('Dashboard') ?></th>
                 <th><?= $this->translate('Dashboard UID') ?></th>
-                <th><?= $this->translate('PanelID') ?></th>
-                <th><?= $this->translate('CustomVars') ?></th>
+                <th><?= $this->translate('Panel ID') ?></th>
+                <th><?= $this->translate('Custom Variables') ?></th>
                 <th><?= $this->translate('Timerange') ?></th>
                 <th><?= $this->translate('Height') ?></th>
                 <th><?= $this->translate('Width') ?></th>
-                <th><?= $this->translate('OrgId') ?></th>
+                <th><?= $this->translate('OrgID') ?></th>
                 <th><?= $this->translate('Repeatable') ?></th>
                 <th><?= $this->translate('Metrics per panel') ?></th>
             </tr>
@@ -40,7 +40,7 @@
                         $name,
                         'grafana/graph/update',
                         ['graph' => $name],
-                        ['title' => sprintf($this->translate('Update Grafana graph %s'), $name)]
+                        ['title' => $this->translate('Update graph')]
                     ) ?>
                 </td>
                 <td><?= $this->escape($graph->dashboard) ?></td>
@@ -52,7 +52,7 @@
                 <td><?= $this->escape($graph->width) ?></td>
                 <td><?= $this->escape($graph->orgId) ?></td>
                 <td><?= ($graph->repeatable == "yes" ) ? "Yes" : "No" ?></td>
-                <td><?= ($graph->nmetrics >= 1 ) ? $this->escape($graph->nmetrics) : "Not used" ?></td>
+                <td><?= ($graph->nmetrics >= 1 ) ? $this->escape($graph->nmetrics) : $this->translate('Not used') ?></td>
                 <td class="icon-col text-right">
                     <?= $this->qlink(
                         '',
@@ -61,7 +61,7 @@
                         [
                             'class' => 'action-link',
                             'icon' => 'cancel',
-                            'title' => sprintf($this->translate('Remove Grafana graph %s'), $name)
+                            'title' => $this->translate('Remove graph')
                         ]
                     ) ?>
                 </td>

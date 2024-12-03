@@ -112,7 +112,7 @@ trait IcingaDbGrapher
         $this->defaultdashboarduid = $this->config->get('defaultdashboarduid', null);
         if (is_null($this->defaultdashboarduid)) {
             throw new ConfigurationError(
-                'no UID for default dashboard found!'
+                'No UID for default dashboard found!'
             );
         }
 
@@ -549,7 +549,7 @@ trait IcingaDbGrapher
                     'tr',
                     null,
                     [
-                        Html::tag('th', null, "Grafan Host"),
+                        Html::tag('th', null, "Grafana Host"),
                         Html::tag('td', null, $this->grafanaHost)
                     ]
                 )

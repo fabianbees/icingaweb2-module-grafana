@@ -5,6 +5,9 @@ namespace Icinga\Module\Grafana\Forms\Config;
 use Icinga\Module\Grafana\Helpers\Timeranges;
 use Icinga\Forms\ConfigForm;
 
+/**
+ * GeneralConfigForm is the configuration form for the module
+ */
 class GeneralConfigForm extends ConfigForm
 {
     /**
@@ -37,7 +40,7 @@ class GeneralConfigForm extends ConfigForm
             [
                 'label' => 'Protocol',
                 'multiOptions' => [
-                    'http' => $this->translate('Unsecure: http'),
+                    'http' => $this->translate('Insecure: http'),
                     'https' => $this->translate('Secure: https'),
                 ],
                 'description' => $this->translate('Protocol used to access Grafana.'),
@@ -89,7 +92,7 @@ class GeneralConfigForm extends ConfigForm
             'text',
             'grafana_custvardisable',
             [
-                'label' => $this->translate('Disable customvar'),
+                'label' => $this->translate('Disable custom variable'),
                 'description' => $this->translate('Name of the custom variable that, if set to true, will disable the graph.'),
             ]
         );
@@ -97,7 +100,7 @@ class GeneralConfigForm extends ConfigForm
             'text',
             'grafana_custvarconfig',
             [
-                'label' => $this->translate('Config customvar'),
+                'label' => $this->translate('Config custom variable'),
                 'description' => $this->translate('Name of the custom variable that, if set, hold the config name to be used.'),
             ]
         );
@@ -124,8 +127,8 @@ class GeneralConfigForm extends ConfigForm
             'grafana_defaultdashboardpanelid',
             [
                 'value' => '1',
-                'label' => $this->translate('Default panel id'),
-                'description' => $this->translate('Id of the panel used in the default dashboard.'),
+                'label' => $this->translate('Default panel ID'),
+                'description' => $this->translate('ID of the panel used in the default dashboard.'),
                 'required' => true,
             ]
         );
@@ -134,8 +137,8 @@ class GeneralConfigForm extends ConfigForm
             'grafana_defaultorgid',
             [
                 'value' => '1',
-                'label' => $this->translate('Default organization id'),
-                'description' => $this->translate('Id of the default organization.'),
+                'label' => $this->translate('Default organization ID'),
+                'description' => $this->translate('ID of the default organization.'),
             ]
         );
         $this->addElement(
@@ -151,12 +154,12 @@ class GeneralConfigForm extends ConfigForm
             'select',
             'grafana_datasource',
             [
-                'label' => $this->translate('Datasource Type'),
+                'label' => $this->translate('Datasource type'),
                 'multiOptions' => [
                     'influxdb' => $this->translate('InfluxDB'),
                     'graphite' => $this->translate('Graphite'),
                 ],
-                'description' => $this->translate('Grafana Datasource Type.')
+                'description' => $this->translate('Select the Grafana datasource.')
             ]
         );
         $this->addElement(
@@ -165,7 +168,7 @@ class GeneralConfigForm extends ConfigForm
             [
                 'label' => $this->translate('Grafana access'),
                 'multiOptions' => [
-                    'indirectproxy' => $this->translate('Indirect Proxy'),
+                    'indirectproxy' => $this->translate('Indirect proxy'),
                     'iframe' => $this->translate('iFrame'),
                 ],
                 'description' => $this->translate('User access Grafana directly or module proxies graphs.'),
@@ -179,7 +182,7 @@ class GeneralConfigForm extends ConfigForm
                 'number',
                 'grafana_proxytimeout',
                 [
-                    'label' => $this->translate('Proxy Timeout'),
+                    'label' => $this->translate('Proxy timeout'),
                     'placeholder' => '5',
                     'description' => $this->translate('Timeout in seconds for proxy mode to fetch images.')
                 ]
@@ -294,7 +297,7 @@ class GeneralConfigForm extends ConfigForm
                         'yes' => $this->translate('Yes'),
                         'no' => $this->translate('No'),
                     ],
-                    'description' => $this->translate('Use public url that is different from host above.'),
+                    'description' => $this->translate('Use public URL that is different from host above.'),
                     'class' => 'autosubmit'
                 ]
             );
@@ -316,7 +319,7 @@ class GeneralConfigForm extends ConfigForm
                 [
                     'label' => 'Public protocol',
                     'multiOptions' => [
-                        'http' => $this->translate('Unsecure: http'),
+                        'http' => $this->translate('Insecure: http'),
                         'https' => $this->translate('Secure: https'),
                     ],
                     'description' => $this->translate('Public protocol used to access Grafana.'),

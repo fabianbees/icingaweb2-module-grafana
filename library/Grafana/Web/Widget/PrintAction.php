@@ -16,7 +16,7 @@ class PrintAction implements Tabextension
     /**
      * Applies the dashboard actions to the provided tabset
      *
-     * @param   Tabs $tabs The tabs object to extend with
+     * @param Tabs $tabs The tabs object to extend with
      */
     public function apply(Tabs $tabs)
     {
