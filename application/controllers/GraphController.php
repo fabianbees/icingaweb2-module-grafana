@@ -31,7 +31,7 @@ class GraphController extends Controller
     {
         $this->getTabs()->add('new-graph', [
             'active' => true,
-            'label' => $this->translate('New Graph'),
+            'label' => $this->translate('Add graph'),
             'url' => $this->getRequest()->getUrl()
         ]);
 
@@ -51,7 +51,7 @@ class GraphController extends Controller
         $graph = $this->params->getRequired('graph');
         $this->getTabs()->add('remove-graph', [
             'active' => true,
-            'label' => $this->translate('Remove Graph'),
+            'label' => $this->translate('Remove graph'),
             'url' => $this->getRequest()->getUrl()
         ]);
 
@@ -78,7 +78,7 @@ class GraphController extends Controller
 
         $confirmation
             ->setRedirectUrl('grafana/graph')
-            ->setSubmitLabel($this->translate('Remove Graph'))
+            ->setSubmitLabel($this->translate('Remove graph'))
             ->handleRequest();
 
         $this->view->form = $confirmation;
@@ -92,7 +92,7 @@ class GraphController extends Controller
         $graph = $this->params->getRequired('graph');
         $this->getTabs()->add('update-graph', [
             'active' => true,
-            'label' => $this->translate('Update Graph'),
+            'label' => $this->translate('Update graph'),
             'url' => $this->getRequest()->getUrl()
         ]);
 

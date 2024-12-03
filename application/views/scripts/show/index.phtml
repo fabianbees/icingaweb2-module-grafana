@@ -7,7 +7,6 @@
 </div>
 <div class="content">
 <?php
-// echo '<pre>' . var_export($services, true) . '</pre>';
     foreach ($objects as $object) {
         if ($object->process_perfdata) {
             if ( ! property_exists($object, 'service_description') && isset($object->service_description) ) {

@@ -39,7 +39,7 @@ class GraphForm extends ConfigForm
             'text',
             'name',
             [
-                'description' => $this->translate('The name of the service or check_command which should use a premade dashboard'),
+                'description' => $this->translate('The name of the service or check_command which should use a premade dashboard.'),
                 'label' => $this->translate('Name'),
                 'required' => true
             ]
@@ -71,8 +71,8 @@ class GraphForm extends ConfigForm
             'panelId',
             [
                 'placeholder' => 'example 1 or 1,4,10 ...',
-                'label' => $this->translate('PanelId(s)'),
-                'description' => $this->translate('Single panelId or comma separated list of panelIds that will be used to show the graph(s).'),
+                'label' => $this->translate('Panel ID(s)'),
+                'description' => $this->translate('Single panel ID or comma separated list of panel IDs that will be used to show the graphs.'),
                 'required' => true
             ]
         );
@@ -83,7 +83,7 @@ class GraphForm extends ConfigForm
             [
                 'placeholder' => 'example 1 ...',
                 'label' => $this->translate('OrganizationId'),
-                'description' => $this->translate('Organization id where the dashboard is located.'),
+                'description' => $this->translate('Organization ID where the dashboard is located.'),
                 'required' => false
             ]
         );
@@ -94,7 +94,7 @@ class GraphForm extends ConfigForm
             [
                 'placeholder' => '&var-example=$my_variable$',
                 'label' => $this->translate('Custom Variables'),
-                'description' => $this->translate('Custom variables from monitoring'),
+                'description' => $this->translate('Custom variables from Icinga'),
                 'required' => false
             ]
         );
@@ -145,7 +145,7 @@ class GraphForm extends ConfigForm
             'nmetrics',
             [
                 'label' => $this->translate('Metrics per panel'),
-                'description' => $this->translate('The number of metrics in an auto repeating panel'),
+                'description' => $this->translate('The number of metrics in an auto repeating panel.'),
                 'required' => false
             ]
         );
