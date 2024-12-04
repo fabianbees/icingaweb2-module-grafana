@@ -239,15 +239,15 @@ class GeneralConfigForm extends ConfigForm
         if (isset($formData['grafana_accessmode']) && $formData['grafana_accessmode'] === 'indirectproxy') {
             $this->addElement(
                 'select',
-                'grafana_indirectproxyrefresh',
+                'grafana_enablecache',
                 [
-                    'label' => $this->translate('Refresh on indirect proxy'),
+                    'label' => $this->translate('Enable cache'),
                     'value' => 'yes',
                     'multiOptions' => [
                         'yes' => $this->translate('Yes'),
                         'no' => $this->translate('No'),
                     ],
-                    'description' => $this->translate('Refresh graphs on indirect proxy mode.')
+                    'description' => $this->translate('Enable cache on indirect proxy mode.')
                 ]
             );
         }

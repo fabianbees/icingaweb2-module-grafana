@@ -40,9 +40,9 @@ class IcingadbimgController extends IcingadbGrafanaController
     protected $custvarconfig           = "grafana_graph_config";
     protected $SSLVerifyPeer           = false;
     protected $SSLVerifyHost           = "0";
-    protected $cacheTime;
+    protected $cacheTime               = 300;
     protected $defaultdashboarduid;
-    protected $refresh                 = "yes";
+    protected $enableCache             = "yes";
     protected $customVars;
     protected $timerangeto;
     protected $object;
@@ -68,7 +68,9 @@ class IcingadbimgController extends IcingadbGrafanaController
         } else {
             $this->timerangeto = strpos($this->timerange ?? '', '/') ? 'now-' . $this->timerange ?? '' : "now";
         }
-        $this->cacheTime = $this->hasParam('cachetime') ? $this->getParam('cachetime') : 300;
+
+        // Get the cachetime URL parameter and use the default if not present
+        $this->cacheTime = $this->hasParam('cachetime') ? $this->getParam('cachetime') : $this->cacheTime;
 
         /* load global configuration */
         $this->myConfig = Config::module('grafana')->getSection('grafana');
@@ -97,7 +99,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         $this->height = $this->myConfig->get('height', $this->height);
         $this->width = $this->myConfig->get('width', $this->width);
         $this->proxyTimeout = $this->myConfig->get('proxytimeout', $this->proxyTimeout);
-        $this->refresh = $this->myConfig->get('indirectproxyrefresh', $this->refresh);
+        $this->enableCache = $this->myConfig->get('enablecache', $this->enableCache);
         /**
          * Read the global default timerange
          */
@@ -214,21 +216,15 @@ class IcingadbimgController extends IcingadbGrafanaController
         }
 
         $imageHtml = "";
-        $res = $this->getMyimageHtml($serviceName, $hostName, $imageHtml);
-        header('Pragma: public');
-        if ($this->refresh == "yes") {
-            header('Pragma: public');
-            header("Expires: ".gmdate("D, d M Y H:i:s", time() + $this->cacheTime)." GMT");
-            header('Cache-Control: max-age='.$this->cacheTime).', public';
-        } else {
-            header("Expires: ".gmdate("D, d M Y H:i:s", time() + 365*86440)." GMT");
-            header('Cache-Control: max-age='. (365*86440));
+        $result = $this->getMyimageHtml($serviceName, $hostName, $imageHtml);
+
+        if ($this->enableCache === 'yes') {
+            header('Cache-Control: public, max-age=' . $this->cacheTime);
         }
+
         header("Content-type: image/png");
-        if (! $res) {
-            // set expire to now and max age to 1 minute
-            header("Expires: ".gmdate("D, d M Y H:i:s", time())." GMT");
-            header('Cache-Control: max-age='. 120);
+
+        if (! $result) {
             $string = wordwrap($this->translate('Error'). ': ' . $imageHtml, 40, "\n");
             $lines = explode("\n", $string);
             $im = @imagecreate($this->width, $this->height);
@@ -368,11 +364,11 @@ class IcingadbimgController extends IcingadbGrafanaController
         }
 
         curl_setopt_array($curl_handle, $curl_opts);
-        $res = curl_exec($curl_handle);
+        $result = curl_exec($curl_handle);
 
         $statusCode = curl_getinfo($curl_handle, CURLINFO_HTTP_CODE);
 
-        if ($res === false) {
+        if ($result === false) {
             $imageHtml .=$this->translate('Cannot fetch graph with curl') .': '. curl_error($curl_handle). '.';
 
             // Provide a hint for 'Failed to connect to ...: Permission denied'
@@ -383,7 +379,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         }
 
         if ($statusCode > 299) {
-            $error = @json_decode($res);
+            $error = @json_decode($result);
             $imageHtml .= $this->translate('Cannot fetch Grafana graph')
                 . ": "
                 . Util::httpStatusCodeToString($statusCode)
@@ -395,7 +391,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         }
 
         curl_close($curl_handle);
-        $imageHtml = $res;
+        $imageHtml = $result;
         return true;
     }
 
