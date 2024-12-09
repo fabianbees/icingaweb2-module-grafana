@@ -18,8 +18,6 @@ use ipl\Web\Url;
  */
 class IcingadbimgController extends IcingadbGrafanaController
 {
-    protected $host;
-    protected $service;
     protected $timerange;
     protected $myConfig;
     protected $myAuth;
