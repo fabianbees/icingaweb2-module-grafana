@@ -2,11 +2,13 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
-use Icinga\Application\Modules\Module;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\IcingadbSupport;
-use Icinga\Module\Monitoring\Object\Host;
+
+use Icinga\Application\Modules\Module;
 use Icinga\Module\Monitoring\Controller;
+use Icinga\Module\Monitoring\Object\Host;
 use Icinga\Module\Monitoring\Object\Service;
+
 use ipl\Web\Url;
 
 class DashboardController extends Controller

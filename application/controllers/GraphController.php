@@ -2,9 +2,10 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
+use Icinga\Module\Grafana\Forms\Graph\GraphForm;
+
 use Icinga\Exception\NotFoundError;
 use Icinga\Forms\ConfirmRemovalForm;
-use Icinga\Module\Grafana\Forms\Graph\GraphForm;
 use Icinga\Web\Controller;
 use Icinga\Web\Notification;
 

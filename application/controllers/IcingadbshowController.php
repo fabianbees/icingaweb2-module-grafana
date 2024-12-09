@@ -2,15 +2,17 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
-use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\HostDetailExtension;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
+
+use Icinga\Application\Config;
+use Icinga\Exception\NotFoundError;
+use Icinga\Module\Grafana\Helpers\Timeranges;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
 use Icinga\Module\Icingadb\Model\Host;
 use Icinga\Module\Icingadb\Model\Service;
-use Icinga\Module\Grafana\Helpers\Timeranges;
-use Icinga\Application\Config;
+
 use ipl\Html\HtmlDocument;
 use ipl\Html\HtmlElement;
 use ipl\Html\HtmlString;

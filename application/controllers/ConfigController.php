@@ -2,8 +2,9 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
-use Icinga\Web\Controller;
 use Icinga\Module\Grafana\Forms\Config\GeneralConfigForm;
+
+use Icinga\Web\Controller;
 
 class ConfigController extends Controller
 {

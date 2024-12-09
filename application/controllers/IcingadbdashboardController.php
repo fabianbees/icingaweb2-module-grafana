@@ -2,12 +2,14 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
-use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\HostDetailExtension;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
+
+use Icinga\Exception\NotFoundError;
 use Icinga\Module\Icingadb\Model\Host;
 use Icinga\Module\Icingadb\Model\Service;
+
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
 
