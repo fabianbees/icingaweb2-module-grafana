@@ -42,8 +42,10 @@ class GraphController extends Controller
             ->setIniConfig($this->Config('graphs'))
             ->setRedirectUrl('grafana/graph')
             ->handleRequest();
+
         $this->view->form = $graphs;
     }
+
     /**
      * Remove a graph
      */

@@ -11,6 +11,9 @@ use Icinga\Module\Monitoring\Object\Service;
 
 use ipl\Web\Url;
 
+/**
+ * DashboardController for showing graphs for Monitoring Module dashboards
+ */
 class DashboardController extends Controller
 {
     public function init()
@@ -21,6 +24,7 @@ class DashboardController extends Controller
 
     public function indexAction()
     {
+        // Redirect to IcingaDB if it is enabled
         if (Module::exists('icingadb') && IcingadbSupport::useIcingaDbAsBackend()) {
             $this->redirectNow(Url::fromPath('grafana/icingadbdashboard')->setQueryString($this->params));
         }

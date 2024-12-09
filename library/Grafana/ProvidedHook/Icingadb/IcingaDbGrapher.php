@@ -133,39 +133,17 @@ trait IcingaDbGrapher
 
         $this->accessMode = $this->config->get('accessmode', $this->accessMode);
         $this->proxyTimeout = $this->config->get('proxytimeout', $this->proxyTimeout);
-        /**
-         * Read the global default timerange
-         */
+
         $this->timerange = $this->config->get('timerange', $this->timerange);
-        /**
-         * Datasource needed to regex special chars
-         */
         $this->dataSource = $this->config->get('datasource', $this->dataSource);
-        /**
-         * Display shadows around graph
-         */
         $this->shadows = $this->config->get('shadows', $this->shadows);
-        /**
-         * Name of the custom variable to disable graph
-         */
         $this->custvardisable = ($this->config->get('custvardisable', $this->custvardisable));
-        /**
-         * Name of the custom variable for graph config
-         */
         $this->custvarconfig = ($this->config->get('custvarconfig', $this->custvarconfig));
 
-        /**
-         * Verify the certificate's name against host
-         */
         $this->SSLVerifyHost = ($this->config->get('ssl_verifyhost', $this->SSLVerifyHost));
-        /**
-         * Verify the peer's SSL certificate
-         */
         $this->SSLVerifyPeer = ($this->config->get('ssl_verifypeer', $this->SSLVerifyPeer));
 
-        /**
-         * Username & Password or token
-         */
+        // Username & Password or token
         $this->apiToken = $this->config->get('apitoken', $this->apiToken);
         $this->authentication = $this->config->get('authentication');
         if ($this->apiToken === null && $this->authentication === "token") {
@@ -205,7 +183,6 @@ trait IcingaDbGrapher
         return $value;
     }
 
-
     /**
      * @param $serviceName
      * @param $serviceCommand
@@ -228,11 +205,7 @@ trait IcingaDbGrapher
         }
 
         $this->dashboard = $this->getGraphConfigOption($serviceName, 'dashboard', $this->defaultDashboard);
-        $this->dashboarduid = $this->getGraphConfigOption(
-            $serviceName,
-            'dashboarduid',
-            $this->defaultdashboarduid
-        );
+        $this->dashboarduid = $this->getGraphConfigOption($serviceName, 'dashboarduid', $this->defaultdashboarduid);
         $this->panelId = $this->getGraphConfigOption($serviceName, 'panelId', $this->defaultDashboardPanelId);
         $this->orgId = $this->getGraphConfigOption($serviceName, 'orgId', $this->defaultOrgId);
         $this->customVars = $this->getGraphConfigOption($serviceName, 'customVars', '');
@@ -393,7 +366,6 @@ trait IcingaDbGrapher
             return '';
         }
 
-
         if (array_key_exists($this->custvarconfig, $customvars)
             && !empty($customvars[$this->custvarconfig])) {
             $graphConfiguation = $this->getGraphConf($customvars[$this->custvarconfig]);
@@ -413,7 +385,7 @@ trait IcingaDbGrapher
             );
         }
 
-        // replace special chars for graphite
+        // Replace special chars for graphite
         if ($this->dataSource === "graphite" && $this->accessMode !== "indirectproxy") {
             $serviceName = Util::graphiteReplace($serviceName);
             $hostName = Util::graphiteReplace($hostName);
@@ -453,9 +425,7 @@ trait IcingaDbGrapher
             $this->dashboarduid,
             $this->dashboard,
             rawurlencode(($this->dataSource === 'graphite' ? Util::graphiteReplace($hostName) : $hostName)),
-            rawurlencode(
-                ($this->dataSource === 'graphite' ? Util::graphiteReplace($serviceName) : $serviceName)
-            ),
+            rawurlencode(($this->dataSource === 'graphite' ? Util::graphiteReplace($serviceName) : $serviceName)),
             rawurlencode($object->checkcommand_name),
             $this->customVars,
             urlencode($this->timerange),
@@ -505,10 +475,7 @@ trait IcingaDbGrapher
             $returnHtml->add($this->createDebugTable());
         }
 
-        $htmlForObject = HtmlElement::create(
-            "div",
-            ["class" => "icinga-module module-grafana"]
-        );
+        $htmlForObject = HtmlElement::create("div", ["class" => "icinga-module module-grafana"]);
 
         $htmlForObject->add($this->title);
         $htmlForObject->add($menu);
