@@ -6,6 +6,9 @@ use Icinga\Module\Grafana\Forms\Config\GeneralConfigForm;
 
 use Icinga\Web\Controller;
 
+/**
+ * ConfigController for showing the module's configuration
+ */
 class ConfigController extends Controller
 {
     public function init()

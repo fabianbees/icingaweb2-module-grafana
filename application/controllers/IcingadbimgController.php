@@ -13,6 +13,9 @@ use Icinga\Module\Icingadb\Model\CustomvarFlat;
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
 
+/**
+ * IcingadbimgController loads graphs as images from the grafana-image-renderer.
+ */
 class IcingadbimgController extends IcingadbGrafanaController
 {
     protected $host;
@@ -21,26 +24,26 @@ class IcingadbimgController extends IcingadbGrafanaController
     protected $myConfig;
     protected $myAuth;
     protected $authentication;
-    protected $grafanaHost             = null;
-    protected $grafanaTheme            = null;
-    protected $protocol                = "http";
-    protected $username                = null;
-    protected $password                = null;
-    protected $apiToken                = null;
-    protected $width                   = 640;
-    protected $height                  = 280;
-    protected $defaultDashboard        = "icinga2-default";
-    protected $defaultDashboardPanelId = "1";
-    protected $defaultOrgId            = "1";
-    protected $shadows                 = false;
-    protected $dataSource              = null;
-    protected $proxyTimeout            = "5";
-    protected $custvarconfig           = "grafana_graph_config";
-    protected $SSLVerifyPeer           = false;
-    protected $SSLVerifyHost           = "0";
-    protected $cacheTime               = 300;
+    protected $grafanaHost = null;
+    protected $grafanaTheme = null;
+    protected $protocol = "http";
+    protected $username = null;
+    protected $password = null;
+    protected $apiToken = null;
+    protected $width = 640;
+    protected $height = 280;
     protected $defaultdashboarduid;
-    protected $enableCache             = "yes";
+    protected $defaultDashboard = "icinga2-default";
+    protected $defaultDashboardPanelId = "1";
+    protected $defaultOrgId = "1";
+    protected $shadows = false;
+    protected $dataSource = null;
+    protected $proxyTimeout = "5";
+    protected $custvarconfig = "grafana_graph_config";
+    protected $SSLVerifyPeer = false;
+    protected $SSLVerifyHost = "0";
+    protected $cacheTime = 300;
+    protected $enableCache = "yes";
     protected $customVars;
     protected $timerangeto;
     protected $object;
@@ -49,17 +52,21 @@ class IcingadbimgController extends IcingadbGrafanaController
     protected $panelId;
     protected $orgId;
 
+    /**
+     * Mainly loading defaults and the configuration.
+     */
     public function init()
     {
         if (! $this->useIcingadbAsBackend) {
             $this->redirectNow(Url::fromPath('grafana/dashboard')->setQueryString($this->params));
         }
-        /* we need at least a host name */
+
+        // We need at least a host name
         if (is_null($this->getParam('host'))) {
             throw new \Error('No host given!');
         }
 
-        /* save timerange from params for later use */
+        // Save timerange from params for later use
         $this->timerange = $this->hasParam('timerange') ? urldecode($this->getParam('timerange')) : null;
         if ($this->hasParam('timerangeto')) {
             $this->timerangeto = urldecode($this->getParam('timerangeto'));
@@ -70,7 +77,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         // Get the cachetime URL parameter and use the default if not present
         $this->cacheTime = $this->hasParam('cachetime') ? $this->getParam('cachetime') : $this->cacheTime;
 
-        /* load global configuration */
+        // Load global configuration
         $this->myConfig = Config::module('grafana')->getSection('grafana');
         $this->grafanaHost = $this->myConfig->get('host', $this->grafanaHost);
         if ($this->grafanaHost == null) {
@@ -78,8 +85,10 @@ class IcingadbimgController extends IcingadbGrafanaController
                 'No Grafana host configured!'
             );
         }
+
         $this->protocol = $this->myConfig->get('protocol', $this->protocol);
 
+        // Get defaults for Grafana dashboards
         $this->defaultDashboard = $this->myConfig->get('defaultdashboard', $this->defaultDashboard);
         $this->defaultdashboarduid = $this->myConfig->get('defaultdashboarduid', null);
         if (is_null($this->defaultdashboarduid)) {
@@ -91,43 +100,27 @@ class IcingadbimgController extends IcingadbGrafanaController
             'defaultdashboardpanelid',
             $this->defaultDashboardPanelId
         );
+
         $this->defaultOrgId = $this->myConfig->get('defaultorgid', $this->defaultOrgId);
         $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
         $this->height = $this->myConfig->get('height', $this->height);
         $this->width = $this->myConfig->get('width', $this->width);
         $this->proxyTimeout = $this->myConfig->get('proxytimeout', $this->proxyTimeout);
         $this->enableCache = $this->myConfig->get('enablecache', $this->enableCache);
-        /**
-         * Read the global default timerange
-         */
+
+        // Read the global default timerange
         if ($this->timerange == null) {
             $this->timerange = $this->config->get('timerange', $this->timerange);
         }
-        /**
-         * Datasource needed to regex special chars
-         */
+
+        // Datasource needed to regex special chars
         $this->dataSource = $this->myConfig->get('datasource', $this->dataSource);
-        /**
-         * Display shadows around graph
-         */
         $this->shadows = $this->myConfig->get('shadows', $this->shadows);
-        /**
-         * Name of the custom variable for graph config
-         */
         $this->custvarconfig = ($this->myConfig->get('custvarconfig', $this->custvarconfig));
-        /**
-         * Verify the certificate's name against host
-         */
         $this->SSLVerifyHost = ($this->myConfig->get('ssl_verifyhost', $this->SSLVerifyHost));
-        /**
-         * Verify the peer's SSL certificate
-         */
         $this->SSLVerifyPeer = ($this->myConfig->get('ssl_verifypeer', $this->SSLVerifyPeer));
 
-        /**
-         * Username & Password or token
-         */
-
+        // Username & Password or token
         $this->apiToken = $this->myConfig->get('apitoken', $this->apiToken);
         $this->authentication = $this->myConfig->get('authentication');
         if ($this->apiToken == null && $this->authentication == "token") {
@@ -192,7 +185,8 @@ class IcingadbimgController extends IcingadbGrafanaController
                 $this->customVars = str_replace($search, $replace, $this->customVars);
             }
 
-            // urlencode values
+            // urlencode custom variable values
+            // TODO: Could this be a Util function?
             $customVars = "";
             foreach (preg_split('/\&/', $this->customVars, -1, PREG_SPLIT_NO_EMPTY) as $param) {
                 $arr = explode("=", $param);
@@ -206,7 +200,8 @@ class IcingadbimgController extends IcingadbGrafanaController
             }
             $this->customVars = $customVars;
         }
-        // replace special chars for graphite
+
+        // Replace special chars for graphite
         if ($this->dataSource == "graphite") {
             $serviceName = Util::graphiteReplace($serviceName);
             $hostName = Util::graphiteReplace($hostName);
@@ -225,8 +220,8 @@ class IcingadbimgController extends IcingadbGrafanaController
             $string = wordwrap($this->translate('Error'). ': ' . $imageHtml, 40, "\n");
             $lines = explode("\n", $string);
             $im = @imagecreate($this->width, $this->height);
-            $background_color = imagecolorallocate($im, 255, 255, 255); //white background
-            $text_color = imagecolorallocate($im, 255, 0, 0);//black text
+            $background_color = imagecolorallocate($im, 255, 255, 255);
+            $text_color = imagecolorallocate($im, 255, 0, 0);
             foreach ($lines as $i => $line) {
                 imagestring($im, 5, 0, 5 + $i * 15, $line, $text_color);
             }
@@ -275,6 +270,7 @@ class IcingadbimgController extends IcingadbGrafanaController
     private function getMyimageHtml($serviceName, $hostName, &$imageHtml)
     {
         $imgClass = $this->shadows ? "grafana-img grafana-img-shadows" : "grafana-img";
+
         // Test whether curl is loaded
         if (extension_loaded('curl') === false) {
             $imageHtml = $this->translate('CURL extension is missing.'
@@ -352,6 +348,7 @@ class IcingadbimgController extends IcingadbGrafanaController
 
         curl_close($curl_handle);
         $imageHtml = $result;
+
         return true;
     }
 }

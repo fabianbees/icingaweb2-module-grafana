@@ -10,6 +10,9 @@ use Icinga\Module\Icingadb\Model\Host;
 
 use ipl\Web\Url;
 
+/**
+ * IcingadbdashboardController for showing graphs for IcingaDB Module dashboards
+ */
 class IcingadbdashboardController extends IcingadbGrafanaController
 {
     public function init()
