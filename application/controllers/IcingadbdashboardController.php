@@ -2,13 +2,12 @@
 
 namespace Icinga\Module\Grafana\Controllers;
 
-use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\HostDetailExtension;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
+
 use Icinga\Module\Icingadb\Model\Host;
-use Icinga\Module\Icingadb\Model\Service;
-use ipl\Stdlib\Filter;
+
 use ipl\Web\Url;
 
 class IcingadbdashboardController extends IcingadbGrafanaController
@@ -38,29 +37,9 @@ class IcingadbdashboardController extends IcingadbGrafanaController
         $serviceName = $this->params->get('service');
 
         if ($serviceName != null) {
-            $query = Service::on($this->getDb())->with([
-                'state',
-                'icon_image',
-                'host',
-                'host.state'
-            ]);
-            $query->filter(
-                Filter::all(
-                    Filter::equal('service.name', $serviceName),
-                    Filter::equal('host.name', $hostName)
-                )
-            );
+            $object = $this->getServiceObject($serviceName, $hostName);
         } else {
-            $query = Host::on($this->getDb())->with(['state', 'icon_image']);
-            $query->filter(Filter::equal('host.name', $hostName));
-        }
-
-        $this->applyRestrictions($query);
-
-        $object = $query->first();
-
-        if ($object === null) {
-            throw new NotFoundError(t('Host or Service not found'));
+            $object = $this->getHostObject($hostName);
         }
 
         if ($object instanceof Host) {

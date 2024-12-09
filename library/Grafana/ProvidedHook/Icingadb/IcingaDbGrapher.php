@@ -2,18 +2,20 @@
 
 namespace Icinga\Module\Grafana\ProvidedHook\Icingadb;
 
+use Icinga\Module\Grafana\Helpers\Timeranges;
+use Icinga\Module\Grafana\Helpers\Util;
+
 use Icinga\Application\Config;
 use Icinga\Application\Icinga;
 use Icinga\Authentication\Auth;
 use Icinga\Exception\ConfigurationError;
-use Icinga\Module\Grafana\Helpers\Timeranges;
-use Icinga\Module\Grafana\Helpers\Util;
 use Icinga\Module\Icingadb\Common\Auth as IcingaDbAuth;
 use Icinga\Module\Icingadb\Common\Database;
 use Icinga\Module\Icingadb\Common\Links;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
 use Icinga\Module\Icingadb\Model\Host;
 use Icinga\Module\Icingadb\Model\Service;
+
 use ipl\Html\Html;
 use ipl\Html\HtmlDocument;
 use ipl\Html\HtmlElement;
@@ -22,8 +24,8 @@ use ipl\Html\ValidHtml;
 use ipl\Orm\Model;
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
-use ipl\Web\Widget\Link;
 use ipl\Web\Widget\Icon;
+use ipl\Web\Widget\Link;
 
 /**
  * IcingaDbGrapher contains methods for retrieving and rendering the data from Grafana
@@ -125,7 +127,7 @@ trait IcingaDbGrapher
         );
 
         $this->defaultOrgId = $this->config->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = $this->getUserThemeMode();
+        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
         $this->height = $this->config->get('height', $this->height);
         $this->width = $this->config->get('width', $this->width);
 
@@ -778,27 +780,5 @@ trait IcingaDbGrapher
         }
 
         return $grafanaTable;
-    }
-
-    /**
-     * getUserThemeMode returns the users configured Theme Mode.
-     * Since we cannot handle the 'system' setting (it's client-side),
-     * we default to 'dark'.
-     * @return string
-     */
-    private function getUserThemeMode(): string
-    {
-        $mode = 'dark';
-
-        if ($user = Auth::getInstance()->getUser()) {
-                $mode = $user->getPreferences()->getValue('icingaweb', 'theme_mode', $mode);
-        }
-
-        // Could be system, which we cannot handle since it's browser-side
-        if (!in_array($mode, ['dark', 'light'])) {
-            $mode = 'dark';
-        }
-
-        return $mode;
     }
 }
