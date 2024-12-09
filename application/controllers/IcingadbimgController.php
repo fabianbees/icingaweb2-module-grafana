@@ -92,7 +92,7 @@ class IcingadbimgController extends IcingadbGrafanaController
             $this->defaultDashboardPanelId
         );
         $this->defaultOrgId = $this->myConfig->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = $this->getUserThemeMode();
+        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
         $this->height = $this->myConfig->get('height', $this->height);
         $this->width = $this->myConfig->get('width', $this->width);
         $this->proxyTimeout = $this->myConfig->get('proxytimeout', $this->proxyTimeout);
@@ -353,27 +353,5 @@ class IcingadbimgController extends IcingadbGrafanaController
         curl_close($curl_handle);
         $imageHtml = $result;
         return true;
-    }
-
-    /**
-     * getUserThemeMode returns the users configured Theme Mode.
-     * Since we cannot handle the 'system' setting (it's client-side),
-     * we default to 'dark'.
-     * @return string
-     */
-    private function getUserThemeMode(): string
-    {
-        $mode = 'dark';
-
-        if ($user = Auth::getInstance()->getUser()) {
-                $mode = $user->getPreferences()->getValue('icingaweb', 'theme_mode', $mode);
-        }
-
-        // Could be system, which we cannot handle since it's browser-side
-        if (!in_array($mode, ['dark', 'light'])) {
-            $mode = 'dark';
-        }
-
-        return $mode;
     }
 }
