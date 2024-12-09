@@ -7,11 +7,8 @@ use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
 use Icinga\Application\Config;
 use Icinga\Authentication\Auth;
 use Icinga\Exception\ConfigurationError;
-use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\Helpers\Util;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
-use Icinga\Module\Icingadb\Model\Host;
-use Icinga\Module\Icingadb\Model\Service;
 
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
@@ -167,13 +164,13 @@ class IcingadbimgController extends IcingadbGrafanaController
             ->orderBy('flatname');
 
         if ($this->hasParam('service') && ! is_null($this->getParam('service'))) {
-            $service = $this->getServiceObject();
+            $service = $this->getServiceObject(urldecode($this->getParam('service')), urldecode($this->getParam('host')));
             $this->object = $service;
             $serviceName = $this->object->name;
             $hostName = $this->object->host->name;
             $varsFlat->filter(Filter::equal('service.id', $this->object->id));
         } else {
-            $host = $this->getHostObject();
+            $host = $this->getHostObject(urldecode($this->getParam('host')));
             $this->object = $host;
             $serviceName = $this->object->checkcommand_name;
             $hostName = $this->object->name;
@@ -245,43 +242,6 @@ class IcingadbimgController extends IcingadbGrafanaController
             print $imageHtml;
         }
         exit;
-    }
-
-    private function getHostObject()
-    {
-        $query = Host::on($this->getDb())->with(['state', 'icon_image']);
-        $query->filter(Filter::equal('name', urldecode($this->getParam('host'))));
-
-        $this->applyRestrictions($query);
-
-        $host = $query->first();
-        if ($host === null) {
-            throw new NotFoundError(t('Service not found'));
-        }
-
-        return $host;
-    }
-
-    private function getServiceObject()
-    {
-        $query = Service::on($this->getDb())->with([
-            'state',
-            'icon_image',
-            'host',
-            'host.state'
-        ]);
-        $query->filter(Filter::equal('name', urldecode($this->getParam('service'))));
-        $query->filter(Filter::equal('host.name', urldecode($this->getParam('host'))));
-
-        $this->applyRestrictions($query);
-
-        /** @var Service $service */
-        $service = $query->first();
-        if ($service === null) {
-            throw new NotFoundError(t('Service not found'));
-        }
-
-        return $service;
     }
 
     private function setGraphConf($serviceName, $serviceCommand = null)

@@ -7,10 +7,8 @@ use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
 
 use Icinga\Application\Config;
-use Icinga\Exception\NotFoundError;
 use Icinga\Module\Grafana\Helpers\Timeranges;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
-use Icinga\Module\Icingadb\Model\Host;
 use Icinga\Module\Icingadb\Model\Service;
 
 use ipl\Html\HtmlDocument;
@@ -116,37 +114,5 @@ class IcingadbshowController extends IcingadbGrafanaController
 
         unset($this->object);
         unset($customVars);
-    }
-
-
-    public function getHostObject(string $host): Host
-    {
-        $query = Host::on($this->getDb())->with(['state', 'icon_image']);
-        $query->filter(Filter::equal('name', $host));
-        $this->applyRestrictions($query);
-        $host = $query->first();
-
-        if ($host === null) {
-            throw new NotFoundError(t('Host not found'));
-        }
-
-        return $host;
-    }
-
-    public function getServiceObject(string $service, string $host): Service
-    {
-        $query = Service::on($this->getDb());
-
-        $query->filter(Filter::equal('name', $service));
-        $query->filter(Filter::equal('host.name', $host));
-        $this->applyRestrictions($query);
-
-        $service = $query->first();
-
-        if ($service === null) {
-            throw new NotFoundError(t('Service not found'));
-        }
-
-        return $service;
     }
 }
