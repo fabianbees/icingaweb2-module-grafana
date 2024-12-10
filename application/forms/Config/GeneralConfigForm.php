@@ -271,8 +271,6 @@ class GeneralConfigForm extends ConfigForm
                     'description' => $this->translate('The default graph width in pixels.')
                 ]
             );
-        }
-        if (( $formData['grafana_accessmode'] != 'iframe' )) {
             $this->addElement(
                 'select',
                 'grafana_usepublic',
