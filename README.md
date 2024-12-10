@@ -2,14 +2,7 @@
 
 This fork was created to provide bug fixes and maintenance.
 
-#### Table of Contents
-
-1. [About](#about)
-2. [License](#license)
-3. [Support](#support)
-4. [Requirements](#requirements)
-5. [Documentation](#documentation)
-6. [Contributing](#contributing)
+You can find the complete documentation inside the [doc](doc/) folder.
 
 ## About
 
@@ -34,23 +27,6 @@ LICENSE file included in the source package.
 ## Support
 
 Join the [Icinga community channels](https://icinga.com/community/) for questions.
-
-## Requirements
-
-* [Icinga Web 2](https://github.com/Icinga/icingaweb2) (>= 2.11)
-* [Icinga DB Web](https://github.com/Icinga/icingadb-web) (>= 1.02)
-* [Grafana](https://grafana.com/) (>= 7.0)
-  * [Grafana Image Renderer](https://grafana.com/grafana/plugins/grafana-image-renderer/) (when using proxy access)
-* [PHP 8.1](https://www.php.net) (with curl and gd enabled)
-
-A data source as a backend for Grafana. Either:
-
-* [InfluxDB](https://docs.influxdata.com/influxdb/) (>= 1.0)
-* [Graphite](https://graphiteapp.org)
-
-## Documentation
-
-You can find the complete documentation inside the [doc](doc/) folder.
 
 ## Thanks
 
