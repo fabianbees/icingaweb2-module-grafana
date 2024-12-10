@@ -44,7 +44,7 @@ git clone "${REPO_URL}" "${TARGET_DIR}"
 Replace the version number with the latest available version from [Latest Release](https://github.com/NETWAYS/icingaweb2-module-grafana/releases/latest)
 
 ```
-MODULE_VERSION="2.0.1"
+MODULE_VERSION="3.0.0"
 ICINGAWEB_MODULEPATH="/usr/share/icingaweb2/modules"
 REPO_URL="https://github.com/NETWAYS/icingaweb2-module-grafana"
 TARGET_DIR="${ICINGAWEB_MODULEPATH}/grafana"
