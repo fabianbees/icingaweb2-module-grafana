@@ -38,12 +38,12 @@ class Util
     }
 
     /**
-     * httpStatusCodetoString translates a HTTP status code to a readable message
+     * httpStatusCodeToString translates a HTTP status code to a readable message
      *
      * @param int $code HTTP status code
      * @return string
      */
-    public static function httpStatusCodetoString(int $code = 0): string
+    public static function httpStatusCodeToString(int $code = 0): string
     {
         $statuscodes = [
             '100' => 'Continue',
