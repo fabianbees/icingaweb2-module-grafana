@@ -9,6 +9,9 @@ use Icinga\Forms\ConfirmRemovalForm;
 use Icinga\Web\Controller;
 use Icinga\Web\Notification;
 
+/**
+ * GraphController for the graphs configuration table and forms.
+ */
 class GraphController extends Controller
 {
     public function init()
@@ -38,8 +41,7 @@ class GraphController extends Controller
 
         $graphs = new GraphForm();
 
-        $graphs
-            ->setIniConfig($this->Config('graphs'))
+        $graphs->setIniConfig($this->Config('graphs'))
             ->setRedirectUrl('grafana/graph')
             ->handleRequest();
 
@@ -61,9 +63,7 @@ class GraphController extends Controller
         $graphs = new GraphForm();
 
         try {
-            $graphs
-                ->setIniConfig($this->Config('graphs'))
-                ->bind($graph);
+            $graphs->setIniConfig($this->Config('graphs'))->bind($graph);
         } catch (NotFoundError $e) {
             $this->httpNotFound($e->getMessage());
         }
@@ -79,8 +79,7 @@ class GraphController extends Controller
             }
         ]);
 
-        $confirmation
-            ->setRedirectUrl('grafana/graph')
+        $confirmation->setRedirectUrl('grafana/graph')
             ->setSubmitLabel($this->translate('Remove graph'))
             ->handleRequest();
 
@@ -102,16 +101,12 @@ class GraphController extends Controller
         $graphs = new GraphForm();
 
         try {
-            $graphs
-                ->setIniConfig($this->Config('graphs'))
-                ->bind($graph);
+            $graphs->setIniConfig($this->Config('graphs'))->bind($graph);
         } catch (NotFoundError $e) {
             $this->httpNotFound($e->getMessage());
         }
 
-        $graphs
-            ->setRedirectUrl('grafana/graph')
-            ->handleRequest();
+        $graphs->setRedirectUrl('grafana/graph')->handleRequest();
 
         $this->view->form = $graphs;
     }

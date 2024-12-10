@@ -41,14 +41,10 @@ class IcingadbdashboardController extends IcingadbGrafanaController
 
         if ($serviceName != null) {
             $object = $this->getServiceObject($serviceName, $hostName);
+            $graph = new ServiceDetailExtension();
         } else {
             $object = $this->getHostObject($hostName);
-        }
-
-        if ($object instanceof Host) {
             $graph = new HostDetailExtension();
-        } else {
-            $graph = new ServiceDetailExtension();
         }
 
         $this->addContent($graph->getPreviewHtml($object));
