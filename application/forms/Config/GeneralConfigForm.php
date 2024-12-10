@@ -34,6 +34,7 @@ class GeneralConfigForm extends ConfigForm
                 'required' => true
             ]
         );
+
         $this->addElement(
             'select',
             'grafana_protocol',
@@ -48,6 +49,7 @@ class GeneralConfigForm extends ConfigForm
             ]
         );
 
+        // TLS configuration
         if (isset($formData['grafana_protocol']) && $formData['grafana_protocol'] === 'https') {
             $this->addElement(
                 'checkbox',
@@ -69,6 +71,8 @@ class GeneralConfigForm extends ConfigForm
                 ]
             );
         }
+
+        // Timerange configuration
         $this->addElement(
             'select',
             'grafana_timerange',
@@ -88,6 +92,8 @@ class GeneralConfigForm extends ConfigForm
                 'description' => $this->translate('The default timerange to use for show all graphs.')
             ]
         );
+
+        // Custom Variable configuration
         $this->addElement(
             'text',
             'grafana_custvardisable',
@@ -104,6 +110,8 @@ class GeneralConfigForm extends ConfigForm
                 'description' => $this->translate('Name of the custom variable that, if set, hold the config name to be used.'),
             ]
         );
+
+        // Grafana dashboard configuration
         $this->addElement(
             'text',
             'grafana_defaultdashboard',
@@ -141,6 +149,8 @@ class GeneralConfigForm extends ConfigForm
                 'description' => $this->translate('ID of the default organization.'),
             ]
         );
+
+        // Graphs shadow configuration
         $this->addElement(
             'checkbox',
             'grafana_shadows',
@@ -150,6 +160,8 @@ class GeneralConfigForm extends ConfigForm
                 'description' => $this->translate('Show shadows around the graph.'),
             ]
         );
+
+        // Grafana datasource configuration
         $this->addElement(
             'select',
             'grafana_datasource',
@@ -162,6 +174,8 @@ class GeneralConfigForm extends ConfigForm
                 'description' => $this->translate('Select the Grafana datasource.')
             ]
         );
+
+        // Grafana access mode configuration
         $this->addElement(
             'select',
             'grafana_accessmode',
@@ -177,6 +191,7 @@ class GeneralConfigForm extends ConfigForm
             ]
         );
 
+        // Indirect proxy mode configuration
         if (isset($formData['grafana_accessmode']) && $formData['grafana_accessmode'] === 'indirectproxy') {
             $this->addElement(
                 'number',
@@ -202,6 +217,8 @@ class GeneralConfigForm extends ConfigForm
                     'class' => 'autosubmit'
                 ]
             );
+
+            // Indirect proxy mode authentication configuration
             if (isset($formData['grafana_authentication']) && $formData['grafana_authentication'] === 'basic') {
                     $this->addElement(
                         'text',
@@ -236,6 +253,7 @@ class GeneralConfigForm extends ConfigForm
             }
         }
 
+        // Indirect proxy mode cache configuration
         if (isset($formData['grafana_accessmode']) && $formData['grafana_accessmode'] === 'indirectproxy') {
             $this->addElement(
                 'select',
@@ -252,6 +270,7 @@ class GeneralConfigForm extends ConfigForm
             );
         }
 
+        // iFrame mode configuration
         if (isset($formData['grafana_accessmode']) && ( $formData['grafana_accessmode'] != 'iframe' )) {
             $this->addElement(
                 'number',
@@ -271,8 +290,6 @@ class GeneralConfigForm extends ConfigForm
                     'description' => $this->translate('The default graph width in pixels.')
                 ]
             );
-        }
-        if (( $formData['grafana_accessmode'] != 'iframe' )) {
             $this->addElement(
                 'select',
                 'grafana_usepublic',
@@ -288,6 +305,8 @@ class GeneralConfigForm extends ConfigForm
                 ]
             );
         }
+
+        // iFrame mode public link configuration
         if (isset($formData['grafana_usepublic']) && ( $formData['grafana_usepublic'] === 'yes' ) && ( $formData['grafana_accessmode'] != 'iframe' )) {
             $this->addElement(
                 'text',
