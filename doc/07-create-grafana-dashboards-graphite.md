@@ -5,7 +5,7 @@ In this example we create a dashboard for the command ping6, open the menu and g
 
 ![Create new Dashboard](images/06-create-new.png)
 
-First go to the dashboard settings (![Settings](images/06-cog.png)) and change the name to `ITL-ping6`.
+First go to the dashboard settings and change the name to `ITL-ping6`.
 Also if you want add description, row names, links etc.
 To save your changes, just hit the :floppy_disk: icon.
 
