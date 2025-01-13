@@ -40,6 +40,8 @@ ssl_verifypeer = "0"
 ssl_verifyhost = "0"
 ```
 
+Hint: to display debug information for graphs you can use the URL parameter `&grafanaDebug`. This requires the `grafana/debug` permission.
+
 ## Available Options
 
 |Setting                | Short description|
