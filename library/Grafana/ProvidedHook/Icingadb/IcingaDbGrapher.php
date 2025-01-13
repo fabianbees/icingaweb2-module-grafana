@@ -377,8 +377,7 @@ trait IcingaDbGrapher
         }
 
         if ($this->repeatable === "yes") {
-            $panelEnd =  ($this->panelId - 1) +
-                intval(substr_count($object->state->performance_data, '=') / $this->numberMetrics);
+            $panelEnd =  ($this->panelId - 1) + intval(substr_count(strval($object->state->performance_data), '=') / $this->numberMetrics);
             $this->panelId = implode(
                 ',',
                 range($this->panelId, $panelEnd)
