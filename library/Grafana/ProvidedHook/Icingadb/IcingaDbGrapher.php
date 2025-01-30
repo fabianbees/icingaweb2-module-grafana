@@ -469,7 +469,10 @@ trait IcingaDbGrapher
                 $i++;
             }
 
-            foreach ($info as $value) {
+            $i = 0;
+            do {
+                $value = $info ? $info[$i] : "";
+
                 // The image value will be returned as reference
                 $previewHtml = new HtmlDocument();
                 $res = $this->getMyPreviewHtml($serviceName, $hostName, $previewHtml, $value);
@@ -477,7 +480,8 @@ trait IcingaDbGrapher
                 if ($res) {
                     $html->addHtml($previewHtml);
                 }
-            }
+                $i++;
+            } while ($i < count($info));
 
             $returnHtml->add($html);
         }
