@@ -1,4 +1,12 @@
 # Change Log
+## [v3.0.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.0.0) (2025-02-03)
+
+**Fixes**
+- Fix debugTable creation in iframe mode
+- Add type check to substr_count to avoid deprecation warning
+- Reintroduce permission to control the appearance of the Grafana link
+- Add small Link to panel
+
 ## [v3.0.0](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.0.0) (2024-12-10)
 
 **BREAKING CHANGES:**
@@ -17,7 +25,7 @@ It now uses the check interval to determine how long a graph's image is cached.
 - PHP 8.2 and PHP 8.3 Support
 - Support strict CSP
 - Dark/Light Theme depending on user's settings (removed the `theme` configuration option)
-- Debug information can be requested via the `debugGrafana` URL parameter (removed the `debug` configuration option)
+- Debug information can be requested via the `grafanaDebug` URL parameter (removed the `debug` configuration option)
 
 **Fixes**
 - Use of special characters in custom variables now works

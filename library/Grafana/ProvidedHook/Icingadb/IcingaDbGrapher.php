@@ -377,8 +377,7 @@ trait IcingaDbGrapher
         }
 
         if ($this->repeatable === "yes") {
-            $panelEnd =  ($this->panelId - 1) +
-                intval(substr_count($object->state->performance_data, '=') / $this->numberMetrics);
+            $panelEnd =  ($this->panelId - 1) + intval(substr_count(strval($object->state->performance_data), '=') / $this->numberMetrics);
             $this->panelId = implode(
                 ',',
                 range($this->panelId, $panelEnd)
@@ -435,14 +434,16 @@ trait IcingaDbGrapher
         );
 
         // Add a link to Grafana in the title
-        $this->title->add(new Link(
-            new Icon(
-                'arrow-up-right-from-square',
-                ['title' => 'View in Grafana']
-            ),
-            str_replace('/d-solo/', '/d/', $url),
-            ['target' => '_blank', 'class' => 'external-link']
-        ));
+        if ($this->permission->hasPermission('grafana/showlink')) {
+            $this->title->add(new Link(
+                new Icon(
+                    'arrow-up-right-from-square',
+                    ['title' => 'View in Grafana']
+                ),
+                str_replace('/d-solo/', '/d/', $url),
+                ['target' => '_blank', 'class' => 'external-link']
+            ));
+        }
 
         // Hide menu if in reporting or compact mode
         $menu = "";
@@ -463,6 +464,16 @@ trait IcingaDbGrapher
             $res = $this->getMyPreviewHtml($serviceName, $hostName, $previewHtml);
 
             if ($res) {
+                // Add Link to Panel if the user has the permission
+                if ($this->permission->hasPermission('grafana/showlink')) {
+                    $linkUrl = $url;
+                    $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '${1}' . $panelid, $linkUrl);
+                    $textLink = new Link('View in Grafana', $linkUrl, ['target' => '_blank', 'class' => 'external-link']);
+                    $html->add($textLink);
+                    $iconLink = new Link(new Icon('arrow-up-right-from-square', ['title' => 'View in Grafana']), $linkUrl, ['target' => '_blank', 'class' => 'external-link']);
+                    $html->add($iconLink);
+                }
+
                 $html->addHtml($previewHtml);
             }
 
@@ -472,7 +483,7 @@ trait IcingaDbGrapher
         // Add a data table with runtime information and configuration for debugging purposes
         if (Url::fromRequest()->hasParam('grafanaDebug') && $this->permission->hasPermission('grafana/debug') && $report === false) {
             $returnHtml->addHtml(HtmlElement::create('h2', null, 'Performance Graph Debug'));
-            $returnHtml->add($this->createDebugTable());
+            $returnHtml->add($this->createDebugTable($previewHtml));
         }
 
         $htmlForObject = HtmlElement::create("div", ["class" => "icinga-module module-grafana"]);
@@ -486,15 +497,12 @@ trait IcingaDbGrapher
     /**
      * createDebugTable creates a data table with runtime information and configuration for debugging purposes
      */
-    private function createDebugTable()
+    private function createDebugTable($previewHtml)
     {
-        if ($this->accessMode === 'indirectproxy') {
-            $usedUrl = $this->pngUrl;
-        } else {
-            $usedUrl = preg_replace('/.*?src\s*=\s*[\'\"](.*?)[\'\"].*/', "$1", $previewHtml);
-        }
+        $usedUrl = $this->pngUrl;
 
         if ($this->accessMode === 'iframe') {
+            $usedUrl = preg_replace('/.*?src\s*=\s*[\'\"](.*?)[\'\"].*/', "$1", $previewHtml);
             $this->height = '100%';
         }
 
