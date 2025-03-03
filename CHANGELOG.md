@@ -1,4 +1,11 @@
 # Change Log
+## [v3.0.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.0) (unreleased)
+
+**Features**
+
+-  Add support for authenticated iFrame with JWT
+
+# Change Log
 ## [v3.0.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.0.0) (2025-02-03)
 
 **Fixes**
