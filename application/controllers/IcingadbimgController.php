@@ -100,7 +100,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         );
 
         $this->defaultOrgId = $this->myConfig->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
+        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser(), $this->myConfig->get('theme', 'dark'));
         $this->height = $this->myConfig->get('height', $this->height);
         $this->width = $this->myConfig->get('width', $this->width);
         $this->proxyTimeout = $this->myConfig->get('proxytimeout', $this->proxyTimeout);

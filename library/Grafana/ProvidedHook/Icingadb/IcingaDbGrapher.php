@@ -132,7 +132,7 @@ trait IcingaDbGrapher
         );
 
         $this->defaultOrgId = $this->config->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
+        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser(), $this->config->get('theme', 'dark'));
         $this->height = $this->config->get('height', $this->height);
         $this->width = $this->config->get('width', $this->width);
 
