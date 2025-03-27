@@ -55,7 +55,7 @@ Hint: to display debug information for graphs you can use the URL parameter `&gr
 |datasource             | **Required for Grafana 4.x only.** Type of the Grafana datasource (`influxdb`, `graphite` or `pnp`). Defaults to `influxdb`.|
 |defaultdashboard       | **Required.** Name of the default dashboard which will be shown for unconfigured graphs. Set to `none` to hide the module output. Defaults to `icinga2-default`.|
 |defaultdashboarduid    | **Required for Grafana 5** The UID of the default dashboard for **Grafana 5**.
-|defaultdashboardpanelid| **Required** ID of the panel used in the default dashboard. Defaults to `1`.
+|defaultdashboardpanelid| **Required** IDs of the panels used in the default dashboard. Defaults to `1`.
 |shadows                | **Optional.** Show shadows around the graphs. ** Defaults to `false`.|
 |defaultorgid           | **Required.** Number of the default organization id where dashboards are located. Defaults to `1`.
 |accessmode             | **Optional.** Controls whether graphs are fetched with curl (`indirectproxy`) or in iframe ('iframe'). Iframe needs `auth.anonymous` enabled in Grafana. Defaults to `indirectproxy`.|
@@ -118,7 +118,7 @@ To get the UID, inspect the URL from your dashboard inside Grafana, it is right 
 For example the URL is 'https://192.168.178.52:3000/d/FxAre-ekz/icinga2-default?orgId=1' the UID is then 'FxAre-ekz'.
 
 ### defaultdashboardpanelid
-The id of the panel used in the default dashboard. Defaults to `1`.
+The IDs of the panels used in the default dashboard. Defaults to `1`.
 
 ### shadows
 Enable/Disable fancy shadows around the graph image.
