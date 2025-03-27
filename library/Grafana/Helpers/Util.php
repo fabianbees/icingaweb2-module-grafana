@@ -16,14 +16,15 @@ class Util
     /**
      * getUserThemeMode returns the users configured Theme Mode.
      * Since we cannot handle the 'system' setting (it's client-side),
-     * we default to 'dark'.
+     * we default to the mode given. This is used to pass the default
+     * from the module's configuration.
      *
      * @param User $user
      * @return string
      */
-    public static function getUserThemeMode(User $user): string
+    public static function getUserThemeMode(User $user, string $defaultMode = 'dark'): string
     {
-        $mode = 'dark';
+        $mode = $defaultMode;
 
         if (isset($user)) {
             $mode = $user->getPreferences()->getValue('icingaweb', 'theme_mode', $mode);
@@ -31,7 +32,7 @@ class Util
 
         // Could be system, which we cannot handle since it's browser-side
         if (!in_array($mode, ['dark', 'light'])) {
-            $mode = 'dark';
+            $mode = $defaultMode;
         }
 
         return $mode;

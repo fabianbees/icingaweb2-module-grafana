@@ -161,6 +161,21 @@ class GeneralConfigForm extends ConfigForm
             ]
         );
 
+        // Default theme
+        $this->addElement(
+            'select',
+            'grafana_theme',
+            array(
+                'label' => $this->translate('Default theme for graphs'),
+                'value' => 'dark',
+                'multiOptions' => array(
+                    'light' => $this->translate('Light'),
+                    'dark' => $this->translate('Dark'),
+                ),
+                'description' => $this->translate("Default theme for graphs. Hint: the user's theme will take precedence")
+            )
+        );
+
         // Grafana datasource configuration
         $this->addElement(
             'select',

@@ -70,6 +70,7 @@ Hint: to display debug information for graphs you can use the URL parameter `&gr
 |publicprotocol         | **Optional** Use a different protocol for the graph links.|
 |custvardisable         | **Optional** Custom variable (vars.idontwanttoseeagraph for example) that will disable graphs. Defaults to `grafana_graph_disable`.|
 |custvarconfig          | **Optional** Custom variable (vars.usegraphconfig for example) that will be used as config name. Defaults to `grafana_graph_config`.|
+|theme                  | **Optional.** Default theme for the graph (light or dark). Hint: the user's theme will take precedence. Defaults to `dark`.|
 |ssl_verifypeer         | **Proxy mode only** **Optional.** Verify the peer's SSL certificate. Defaults to `false`.|
 |ssl_verifyhost         | **Proxy mode only** **Optional.** Verify the certificate's name against host. Defaults to `false`.|
 
