@@ -131,12 +131,12 @@ class GeneralConfigForm extends ConfigForm
             ]
         );
         $this->addElement(
-            'number',
+            'text',
             'grafana_defaultdashboardpanelid',
             [
                 'value' => '1',
-                'label' => $this->translate('Default panel ID'),
-                'description' => $this->translate('ID of the panel used in the default dashboard.'),
+                'label' => $this->translate('Default panel ID(s)'),
+                'description' => $this->translate('Comma separated IDs of the panels used in the default dashboard.'),
                 'required' => true,
             ]
         );
@@ -159,6 +159,21 @@ class GeneralConfigForm extends ConfigForm
                 'label' => $this->translate('Show shadows'),
                 'description' => $this->translate('Show shadows around the graph.'),
             ]
+        );
+
+        // Default theme
+        $this->addElement(
+            'select',
+            'grafana_theme',
+            array(
+                'label' => $this->translate('Default theme for graphs'),
+                'value' => 'dark',
+                'multiOptions' => array(
+                    'light' => $this->translate('Light'),
+                    'dark' => $this->translate('Dark'),
+                ),
+                'description' => $this->translate("Default theme for graphs. Hint: the user's theme will take precedence")
+            )
         );
 
         // Grafana datasource configuration
@@ -330,6 +345,54 @@ class GeneralConfigForm extends ConfigForm
                     'description' => $this->translate('Public protocol used to access Grafana.'),
                 ]
             );
+        }
+
+        if (isset($formData['grafana_accessmode']) && ( $formData['grafana_accessmode'] === 'iframe' )) {
+            $this->addElement(
+                'checkbox',
+                'grafana_jwtEnable',
+                [
+                    'label' => $this->translate('Enable JWT'),
+                    'value' => false,
+                    'description' => $this->translate('Enable JWT. Grafana host will receive the JWT token to authorize the user.'),
+                    'class' => 'autosubmit',
+                ]
+            );
+            if (isset($formData['grafana_jwtEnable'])) {
+                $this->addElement(
+                    'number',
+                    'grafana_jwtExpires',
+                    [
+                        'label' => $this->translate('JWT Expiration'),
+                        'placeholder' => 30,
+                        'description' => $this->translate('JWT Token expiration in seconds. A very short time is recommended. Default 30 seconds.'),
+                        'required' => false,
+                        'class' => 'autosubmit',
+                    ]
+                );
+                $this->addElement(
+                    'text',
+                    'grafana_jwtIssuer',
+                    [
+                        'placeholder' => 'https://localhost',
+                        'label' => $this->translate('JWT Issuer'),
+                        'description' => $this->translate('The issuer of the token (e.g. URL of this system). Can be used as a validation when other systems receive the token. Default is empty, no issuer.'),
+                        'required' => false,
+                        'class' => 'autosubmit',
+                    ]
+                );
+                $this->addElement(
+                    'text',
+                    'grafana_jwtUser',
+                    [
+                        'placeholder' => 'username',
+                        'label' => $this->translate('JWT Subject (login)'),
+                        'description' => $this->translate('The username or email to be used as login. Leave empty to use the Icinga Web username.'),
+                        'required' => false,
+                        'class' => 'autosubmit',
+                    ]
+                );
+            }
         }
     }
 }

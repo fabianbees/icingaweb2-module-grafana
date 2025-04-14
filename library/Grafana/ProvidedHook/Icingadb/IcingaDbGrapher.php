@@ -26,6 +26,7 @@ use ipl\Stdlib\Filter;
 use ipl\Web\Url;
 use ipl\Web\Widget\Icon;
 use ipl\Web\Widget\Link;
+use Icinga\Module\Grafana\Helpers\JwtToken;
 
 /**
  * IcingaDbGrapher contains methods for retrieving and rendering the data from Grafana
@@ -81,6 +82,10 @@ trait IcingaDbGrapher
     protected $orgId;
     protected $customVars;
     protected $pngUrl;
+    protected $jwtIssuer = "https://localhost";
+    protected $jwtEnable = false;
+    protected $jwtUser;
+    protected $jwtExpires = 30;
 
     protected function init()
     {
@@ -127,7 +132,7 @@ trait IcingaDbGrapher
         );
 
         $this->defaultOrgId = $this->config->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser());
+        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser(), $this->config->get('theme', 'dark'));
         $this->height = $this->config->get('height', $this->height);
         $this->width = $this->config->get('width', $this->width);
 
@@ -163,6 +168,11 @@ trait IcingaDbGrapher
                 $this->auth = "";
             }
         }
+
+        $this->jwtIssuer = $this->config->get('jwtIssuer');
+        $this->jwtEnable = $this->config->get('jwtEnable', $this->jwtEnable);
+        $this->jwtExpires = $this->config->get('jwtExpires', $this->jwtExpires);
+        $this->jwtUser = $this->config->get('jwtUser', $this->permission->getUser()->getUsername());
     }
 
     public function has(Model $object): bool
@@ -299,6 +309,11 @@ trait IcingaDbGrapher
                 urlencode($this->timerange),
                 urlencode($this->timerangeto)
             );
+
+            if ($this->jwtEnable) {
+                $authToken = JwtToken::create($this->jwtUser, $this->jwtExpires, !empty($this->jwtIssuer) ? $this->jwtIssuer:null, [ 'roles' => [ 'Viewer' ] ]);
+                $iFramesrc .= sprintf("&auth_token=%s", urlencode($authToken));
+            }
 
             $iframeHtml = Html::tag(
                 'iframe',

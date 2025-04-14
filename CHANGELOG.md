@@ -1,4 +1,13 @@
 # Change Log
+## [v3.1.0](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.0) (2025-04-14)
+
+**Features**
+
+- Add support for authenticated iFrame with JWT
+- Reintroduce configuration option for default theme
+- Allow comma separated panel ID lists
+
+# Change Log
 ## [v3.0.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.0.0) (2025-02-03)
 
 **Fixes**
