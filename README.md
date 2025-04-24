@@ -2,6 +2,8 @@
 
 This fork was created to provide bug fixes and maintenance.
 
+**Note:** Check out the perfdatagraphs module as an alternative. https://github.com/NETWAYS/icingaweb2-module-perfdatagraphs
+
 You can find the complete documentation inside the [doc](doc/) folder.
 
 ## About
