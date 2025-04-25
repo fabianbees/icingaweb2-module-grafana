@@ -338,7 +338,7 @@ trait IcingaDbGrapher
      * @throws ConfigurationError
      * @throws \Icinga\Exception\ProgrammingError
      */
-    public function getPreviewHtml(Model $object, $report = false)
+    public function getPreviewHtml(Model $object, $report = false): ValidHtml
     {
         $this->object = $object;
         // Use the cachetime based on the check intervals
@@ -378,7 +378,7 @@ trait IcingaDbGrapher
         $customvars = $this->getDb()->fetchPairs($varsFlat->assembleSelect());
 
         if ($object->perfdata_enabled == "n" || (( isset($customvars[$this->custvardisable]) && json_decode(strtolower($customvars[$this->custvardisable])) !== false))) {
-            return '';
+            return HtmlString::create('');
         }
 
         if (array_key_exists($this->custvarconfig, $customvars)
