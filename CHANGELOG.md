@@ -1,4 +1,9 @@
 # Change Log
+## [v3.1.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.1) (2025-04-30)
+
+**Fixes**
+- Fix invalid return value for getPreviewHTML
+
 ## [v3.1.0](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.0) (2025-04-14)
 
 **Features**
@@ -7,7 +12,6 @@
 - Reintroduce configuration option for default theme
 - Allow comma separated panel ID lists
 
-# Change Log
 ## [v3.0.1](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.0.0) (2025-02-03)
 
 **Fixes**
