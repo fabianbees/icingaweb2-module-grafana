@@ -7,27 +7,6 @@
       "type": "datasource",
       "pluginId": "influxdb",
       "pluginName": "InfluxDB"
-    },
-    {
-      "name": "VAR_HOSTNAME",
-      "type": "custom",
-      "label": "hostname",
-      "value": "null",
-      "description": ""
-    },
-    {
-      "name": "VAR_SERVICE",
-      "type": "custom",
-      "label": "service",
-      "value": "null",
-      "description": ""
-    },
-    {
-      "name": "VAR_COMMAND",
-      "type": "custom",
-      "label": "command",
-      "value": "null",
-      "description": ""
     }
   ],
   "__requires": [
