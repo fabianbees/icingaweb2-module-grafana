@@ -6,10 +6,6 @@ use Icinga\Module\Grafana\ProvidedHook\Icingadb\HostDetailExtension;
 use Icinga\Module\Grafana\ProvidedHook\Icingadb\ServiceDetailExtension;
 use Icinga\Module\Grafana\Web\Controller\IcingadbGrafanaController;
 
-use Icinga\Module\Icingadb\Model\Host;
-
-use ipl\Web\Url;
-
 /**
  * IcingadbdashboardController for showing graphs for IcingaDB Module dashboards
  */
@@ -23,10 +19,6 @@ class IcingadbdashboardController extends IcingadbGrafanaController
 
     public function indexAction()
     {
-        if (! $this->useIcingadbAsBackend) {
-            $this->redirectNow(Url::fromPath('grafana/dashboard')->setQueryString($this->params));
-        }
-
         $this->getTabs()->add(
             'graphs',
             [
