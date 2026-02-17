@@ -61,6 +61,7 @@ trait IcingaDbGrapher
     protected $defaultDashboardPanelId = "1";
     protected $defaultOrgId = "1";
     protected $shadows = false;
+    protected $dashboardLink = false;
     protected $dataSource = null;
     protected $accessMode = "proxy";
     protected $proxyTimeout = "5";
@@ -142,6 +143,7 @@ trait IcingaDbGrapher
         $this->timerange = $this->config->get('timerange', $this->timerange);
         $this->dataSource = $this->config->get('datasource', $this->dataSource);
         $this->shadows = $this->config->get('shadows', $this->shadows);
+        $this->dashboardLink = $this->config->get('dashboardlink', $this->dashboardLink);
         $this->custvardisable = ($this->config->get('custvardisable', $this->custvardisable));
         $this->custvarconfig = ($this->config->get('custvarconfig', $this->custvarconfig));
 
@@ -482,7 +484,12 @@ trait IcingaDbGrapher
                 // Add Link to Panel if the user has the permission
                 if ($this->permission->hasPermission('grafana/showlink')) {
                     $linkUrl = $url;
-                    $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '${1}' . $panelid, $linkUrl);
+                    if ( $this->dashboardLink ) {
+                        $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '', $linkUrl);
+                    }
+                    else {
+                        $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '${1}' . $panelid, $linkUrl);
+                    }
                     $textLink = new Link('View in Grafana', $linkUrl, ['target' => '_blank', 'class' => 'external-link']);
                     $html->add($textLink);
                     $iconLink = new Link(new Icon('arrow-up-right-from-square', ['title' => 'View in Grafana']), $linkUrl, ['target' => '_blank', 'class' => 'external-link']);
