@@ -126,7 +126,7 @@ The IDs of the panels used in the default dashboard. Defaults to `1`.
 Enable/Disable fancy shadows around the graph image.
 
 ### dashboardlink
-Controls whether the "view in grafana" link points to the whole dashboard or only to the panel (default). This is useful when only specific or single panels are shown in Icingaweb2 and the dashboard contains addiitonal panels.
+Controls whether the "view in grafana" link points to the whole dashboard or only to the panel (default). This is useful when only specific or single panels are shown in Icingaweb2 and the dashboard contains additional panels.
 
 ### accessmode
 Controls how the graphs are fetched/delivered for/to the users.
