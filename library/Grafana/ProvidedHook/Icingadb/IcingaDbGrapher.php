@@ -484,10 +484,9 @@ trait IcingaDbGrapher
                 // Add Link to Panel if the user has the permission
                 if ($this->permission->hasPermission('grafana/showlink')) {
                     $linkUrl = $url;
-                    if ( $this->dashboardLink ) {
+                    if ($this->dashboardLink) {
                         $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '', $linkUrl);
-                    }
-                    else {
+                    } else {
                         $linkUrl = preg_replace('/(viewPanel=)[^&]+/', '${1}' . $panelid, $linkUrl);
                     }
                     $textLink = new Link('View in Grafana', $linkUrl, ['target' => '_blank', 'class' => 'external-link']);
