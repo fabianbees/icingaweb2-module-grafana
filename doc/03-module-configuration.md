@@ -38,6 +38,7 @@ publicprotocol = "http"
 custvardisable = "idontwanttoseeagraph"
 ssl_verifypeer = "0"
 ssl_verifyhost = "0"
+dashboardlink = "0"
 ```
 
 Hint: to display debug information for graphs you can use the URL parameter `&grafanaDebug`. This requires the `grafana/debug` permission.
@@ -57,6 +58,7 @@ Hint: to display debug information for graphs you can use the URL parameter `&gr
 |defaultdashboarduid    | **Required for Grafana 5** The UID of the default dashboard for **Grafana 5**.
 |defaultdashboardpanelid| **Required** IDs of the panels used in the default dashboard. Defaults to `1`.
 |shadows                | **Optional.** Show shadows around the graphs. ** Defaults to `false`.|
+|dashboardlink          | **Optional.** Link to the dashboard instead to a single panel. |
 |defaultorgid           | **Required.** Number of the default organization id where dashboards are located. Defaults to `1`.
 |accessmode             | **Optional.** Controls whether graphs are fetched with curl (`indirectproxy`) or in iframe ('iframe'). Iframe needs `auth.anonymous` enabled in Grafana. Defaults to `indirectproxy`.|
 |timeout                | **Proxy only** **Optional.** Timeout in seconds for proxy mode to fetch images. Defaults to `5`.|
@@ -122,6 +124,9 @@ The IDs of the panels used in the default dashboard. Defaults to `1`.
 
 ### shadows
 Enable/Disable fancy shadows around the graph image.
+
+### dashboardlink
+Controls whether the "view in grafana" link points to the whole dashboard or only to the panel (default). This is useful when only specific or single panels are shown in Icingaweb2 and the dashboard contains additional panels.
 
 ### accessmode
 Controls how the graphs are fetched/delivered for/to the users.

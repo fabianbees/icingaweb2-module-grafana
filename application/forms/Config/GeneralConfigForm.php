@@ -161,6 +161,17 @@ class GeneralConfigForm extends ConfigForm
             ]
         );
 
+        // Grafana link to dashboard/panel configuration
+        $this->addElement(
+            'checkbox',
+            'grafana_dashboardlink',
+            [
+                'value' => false,
+                'label' => $this->translate('Link to dashboard'),
+                'description' => $this->translate('Link points to the dashboard instead of a single panel.'),
+            ]
+        );
+
         // Default theme
         $this->addElement(
             'select',
