@@ -277,7 +277,7 @@ class IcingadbimgController extends IcingadbGrafanaController
         }
 
         $pngUrl = sprintf(
-            '%s://%s/render/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s'
+            '%s://%s/render/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s&hideLogo=true'
             . '&width=%s&height=%s&theme=%s&from=%s&to=%s',
             $this->protocol,
             $this->grafanaHost,
