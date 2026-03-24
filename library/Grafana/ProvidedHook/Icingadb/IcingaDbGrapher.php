@@ -38,7 +38,7 @@ trait IcingaDbGrapher
 
     // Could be constants in the future, but for now we want to keep compatibility
     protected $GRAFANA_URL = "%s://%s/d/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&from=%s&to=%s&orgId=%s&viewPanel=%s";
-    protected $GRAFANA_URL_SOLO = "%s://%s/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s&theme=%s&from=%s&to=%s";
+    protected $GRAFANA_URL_SOLO = "%s://%s/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s&theme=%s&from=%s&to=%s&hideLogo=true";
 
     protected $config;
     protected $graphConfig;
