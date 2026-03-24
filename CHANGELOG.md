@@ -1,10 +1,14 @@
 # Change Log
+## [v3.1.4](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.4) (unreleased)
+
+**Fixes**
+- Hide Grafana logo
+
 ## [v3.1.3](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.3) (2026-03-09)
 
 **Features**
 - Add option to link to panel
 
-# Change Log
 ## [v3.1.2](https://github.com/NETWAYS/icingaweb2-module-grafana/tree/v3.1.2) (2025-12-15)
 
 **Fixes**
