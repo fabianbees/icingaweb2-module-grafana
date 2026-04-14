@@ -9,6 +9,7 @@ use Icinga\Authentication\Auth;
 use Icinga\Exception\ConfigurationError;
 use Icinga\Module\Grafana\Helpers\Util;
 use Icinga\Module\Icingadb\Model\CustomvarFlat;
+use Icinga\Util\TimezoneDetect;
 
 use ipl\Stdlib\Filter;
 use ipl\Web\Url;
@@ -49,6 +50,8 @@ class IcingadbimgController extends IcingadbGrafanaController
     protected $dashboarduid;
     protected $panelId;
     protected $orgId;
+    protected $detect;
+    protected $timezone;
 
     /**
      * Mainly loading defaults and the configuration.
@@ -99,8 +102,16 @@ class IcingadbimgController extends IcingadbGrafanaController
             $this->defaultDashboardPanelId
         );
 
+        $auth = Auth::getInstance();
+        if (! $auth->isAuthenticated()
+            || ($timezone = $auth->getUser()->getPreferences()->getValue('icingaweb', 'timezone')) === null
+        ) {
+            $this->detect = new TimezoneDetect();
+            $this->timezone = $this->detect->getTimezoneName();
+        }
+
         $this->defaultOrgId = $this->myConfig->get('defaultorgid', $this->defaultOrgId);
-        $this->grafanaTheme = Util::getUserThemeMode(Auth::getInstance()->getUser(), $this->myConfig->get('theme', 'dark'));
+        $this->grafanaTheme = Util::getUserThemeMode($auth->getUser(), $this->myConfig->get('theme', 'dark'));
         $this->height = $this->myConfig->get('height', $this->height);
         $this->width = $this->myConfig->get('width', $this->width);
         $this->proxyTimeout = $this->myConfig->get('proxytimeout', $this->proxyTimeout);
@@ -278,7 +289,7 @@ class IcingadbimgController extends IcingadbGrafanaController
 
         $pngUrl = sprintf(
             '%s://%s/render/d-solo/%s/%s?var-hostname=%s&var-service=%s&var-command=%s%s&panelId=%s&orgId=%s&hideLogo=true'
-            . '&width=%s&height=%s&theme=%s&from=%s&to=%s',
+            . '&width=%s&height=%s&theme=%s&from=%s&to=%s&timezone=%s',
             $this->protocol,
             $this->grafanaHost,
             $this->dashboarduid,
@@ -293,7 +304,8 @@ class IcingadbimgController extends IcingadbGrafanaController
             $this->height,
             $this->grafanaTheme,
             urlencode($this->timerange),
-            urlencode($this->timerangeto)
+            urlencode($this->timerangeto),
+            urlencode($this->timezone)
         );
 
         // fetch image with curl
